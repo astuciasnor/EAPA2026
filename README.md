@@ -89,6 +89,27 @@ Saída do livro:
 
 - `livro/_site/`
 
+## Publicação do livro no GitHub Pages
+
+O livro pode ser publicado automaticamente neste mesmo repositório.
+
+Fluxo adotado:
+
+- o conteúdo-fonte continua em `livro/`
+- o GitHub Actions renderiza o livro com `quarto render livro`
+- a publicação usa `livro/_site/` como artefato do GitHub Pages
+- `livro/_site/` permanece fora do Git, porque é saída gerada
+
+Primeira ativação no GitHub:
+
+1. Abra o repositório em `Settings > Pages`.
+2. Em `Build and deployment`, escolha `Source: GitHub Actions`.
+3. Faça um push na branch `main` ou rode manualmente o workflow `Publish Book` na aba `Actions`.
+
+Endereço esperado da publicação:
+
+- `https://astuciasnor.github.io/EAPA2026/`
+
 Arquivos do Zotero:
 
 - os arquivos já devem ficar em `livro/referencias/`

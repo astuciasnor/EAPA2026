@@ -4,18 +4,14 @@ title: "Apresentação"
 
 # Bem-vinda e bem-vindo
 
-Este livro foi pensado como um material de estudo em construção contínua para a
-disciplina de Estatística Aplicada à Engenharia Aquícola, aqui entendida como o
-campo que dialoga com pesca e aquicultura.
+Este livro foi pensado como um material de estudo em construção contínua para a disciplina de Estatística Aplicada à Engenharia Aquícola, aqui entendida como o campo que dialoga com pesca e aquicultura.
 
-O objetivo não é substituir a aula, mas organizar a teoria que sustenta os
-relatórios práticos em Quarto usados ao longo do período letivo.
+O objetivo não é substituir a aula, mas organizar a teoria que sustenta os relatórios práticos em Quarto usados ao longo do período letivo.
 
-::: {.callout-note}
+::: callout-note
 ## Material vivo
-Este livro será ampliado pouco a pouco durante o semestre. A cada novo bloco da
-disciplina, a ideia é acrescentar teoria, exemplos e conexões com os relatórios
-práticos já usados em aula.
+
+Este livro será ampliado pouco a pouco durante o semestre. A cada novo bloco da disciplina, a ideia é acrescentar teoria, exemplos e conexões com os relatórios práticos já usados em aula.
 :::
 
 # Como usar este material
@@ -24,43 +20,35 @@ Use este livro junto com os relatórios práticos da pasta `relatorios/`.
 
 O fluxo recomendado é:
 
-1. ler a ideia central da análise aqui no livro;
-2. abrir o relatório prático correspondente;
-3. observar como a análise aparece nos dados reais;
-4. voltar ao livro para consolidar a interpretação.
+1.  ler a ideia central da análise aqui no livro;
+2.  abrir o relatório prático correspondente;
+3.  observar como a análise aparece nos dados reais;
+4.  voltar ao livro para consolidar a interpretação.
 
 # O que você encontrará aqui
 
 Ao longo do semestre, cada capítulo deve reunir quatro peças principais:
 
-- contexto aplicado em pesca e aquicultura;
-- conceitos estatísticos essenciais;
-- interpretação cuidadosa dos resultados;
-- ligação direta com as atividades práticas em Quarto.
+-   contexto aplicado em pesca e aquicultura;
+-   conceitos estatísticos essenciais;
+-   interpretação cuidadosa dos resultados;
+-   ligação direta com as atividades práticas em Quarto.
 
 # Princípio didático
 
-Neste material, a estatística aparece como ferramenta para responder perguntas
-reais sobre produção, crescimento, manejo, ambiente, biometria e experimentação.
-Por isso, a leitura dos resultados será sempre tão importante quanto a execução
-dos comandos.
+Neste material, a estatística aparece como ferramenta para responder perguntas reais sobre produção, crescimento, manejo, ambiente, biometria e experimentação. Por isso, a leitura dos resultados será sempre tão importante quanto a execução dos comandos.
 
 # Estrutura inicial do livro
 
 Os primeiros capítulos foram organizados para apoiar o começo do trabalho com:
 
-- leitura de dados e gráficos;
-- amostragem e delineamento;
-- testes de hipóteses;
-- interpretação aplicada.
+-   leitura de dados e gráficos;
+-   amostragem e delineamento;
+-   testes de hipóteses;
+-   interpretação aplicada.
 
 # Sobre referências bibliográficas
 
-O livro já foi preparado para usar Zotero por meio de arquivos `references.bib`
-e `food-chemistry.csl`. Quando esses arquivos forem copiados para a pasta
-`livro/referencias/`, a configuração bibliográfica poderá ser ativada sem mudar
-o restante da estrutura.
+O livro já foi preparado para usar Zotero por meio de arquivos `references.bib` e `food-chemistry.csl`. Quando esses arquivos forem copiados para a pasta `livro/referencias/`, a configuração bibliográfica poderá ser ativada sem mudar o restante da estrutura.
 
-Neste momento, essa integração já está ativa. Ao longo da escrita, as citações
-podem ser inseridas diretamente no texto com a sintaxe normal do Quarto, como em
-`[@björnsson1994]`.
+Neste momento, essa integração já está ativa. Ao longo da escrita, as citações podem ser inseridas diretamente no texto com a sintaxe normal do Quarto, como em `[@björnsson1994]`.
