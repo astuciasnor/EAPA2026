@@ -1,0 +1,160 @@
+---
+title: "Planejamento amostral em campo"
+subtitle: "Modelo guiado para Bioologia Pesqueira e Aquicultura"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Planejar o tamanho amostral e organizar a coleta de campo com base em uma base
+piloto importada de uma planilha Excel.
+
+::: {.callout-note}
+## O que editar neste arquivo
+Troque principalmente:
+- a **aba da planilha**;
+- a **variável de interesse**;
+- os **parâmetros do erro amostral**;
+- a **descrição do cenário de coleta**.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(psych)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação da base piloto
+
+```{r}
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "26.planej_amostral_demo"
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+# Contexto do problema
+
+Descreva aqui o cenário. Exemplo: estimar o comprimento médio de peixes
+desembarcados em diferentes setores do estuário, com coleta em embarcações.
+
+# Variável usada no planejamento
+
+```{r}
+# Troque esta variável quando necessário -------------------------------
+variavel_resposta <- "comprimento_cm"
+# ---------------------------------------------------------------------
+
+vetor <- dados[[variavel_resposta]]
+summary(vetor)
+```
+
+# Estatísticas piloto
+
+```{r}
+estatisticas <- psych::describe(vetor) |>
+  as_tibble()
+
+estatisticas |>
+  select(n, mean, sd, min, max, median) |>
+  tabela_relatorio(titulo = "Resumo da amostra piloto.", digits = 2)
+```
+
+# Fórmula do tamanho amostral
+
+Para variável quantitativa, uma forma simples de estimar o tamanho amostral é:
+
+$$
+n_0 = \left(\frac{t \cdot s}{E}\right)^2
+$$
+
+em que:
+- $t$ é o valor crítico;
+- $s$ é o desvio-padrão piloto;
+- $E$ é o erro admissível.
+
+Se a população for finita, podemos ajustar:
+
+$$
+n = \frac{N \cdot n_0}{N + n_0 - 1}
+$$
+
+# Parâmetros do planejamento
+
+```{r}
+# Edite estes valores conforme a aula ----------------------------------
+nivel_confianca <- 0.95
+erro_admissivel <- 1.0
+populacao_finita <- TRUE
+N <- 320
+# ----------------------------------------------------------------------
+
+alpha <- 1 - nivel_confianca
+t_critico <- qt(1 - alpha/2, df = length(vetor) - 1)
+s_piloto <- sd(vetor, na.rm = TRUE)
+
+n0 <- (t_critico * s_piloto / erro_admissivel)^2
+
+n_planejado <- if (populacao_finita) {
+  (N * n0) / (N + n0 - 1)
+} else {
+  n0
+}
+
+resultado_n <- tibble(
+  parametro = c("n piloto", "média piloto", "desvio-padrão piloto", "t crítico",
+                "erro admissível", "N populacional", "n calculado"),
+  valor = c(length(vetor), mean(vetor, na.rm = TRUE), s_piloto, t_critico,
+            erro_admissivel, ifelse(populacao_finita, N, NA), ceiling(n_planejado))
+)
+
+resultado_n |>
+  tabela_relatorio(titulo = "Parâmetros e tamanho amostral calculado.", digits = 2)
+```
+
+# Visualização da base piloto
+
+```{r}
+ggplot(dados, aes(x = .data[[variavel_resposta]])) +
+  geom_histogram(bins = 10) +
+  labs(
+    title = "Distribuição da variável piloto",
+    x = variavel_resposta,
+    y = "Frequência"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Organização da coleta
+
+```{r}
+plano_coleta <- dados |>
+  count(setor, embarcacao, name = "n_registros_piloto") |>
+  arrange(setor, embarcacao)
+
+plano_coleta |>
+  tabela_relatorio(titulo = "Resumo inicial por setor e embarcação.")
+```
+
+## Modelo de escrita
+
+> Considerando a variabilidade observada na amostra piloto e o erro admissível
+> definido para a aula, o tamanho amostral calculado foi de **`r ceiling(n_planejado)`**
+> unidades amostrais. Esse valor pode orientar a coleta de campo, a distribuição
+> entre setores e o esforço de amostragem por embarcação.
+
+# Conclusão
+
+Finalize dizendo se o tamanho amostral obtido é viável e como a coleta poderá
+ser organizada no campo.

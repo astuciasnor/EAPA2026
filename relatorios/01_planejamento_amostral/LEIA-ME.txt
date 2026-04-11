@@ -1,0 +1,9 @@
+Planejamento amostral em campo
+
+Nível indicado: iniciante.
+Aba recomendada: 26.planej_amostral_demo.
+O que este relatório faz: calcula tamanho amostral, resume a amostra piloto e organiza a coleta.
+O que editar primeiro: aba da planilha, variável de interesse, erro admissível e conclusão.
+Saída esperada: gráfico, tabelas e interpretação do tamanho amostral.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

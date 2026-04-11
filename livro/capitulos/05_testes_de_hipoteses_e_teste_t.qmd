@@ -1,0 +1,82 @@
+---
+title: "Testes de Hipóteses e Teste t"
+---
+
+# O que significa testar uma hipótese?
+
+Em estatística, testar uma hipótese significa avaliar se o padrão observado nos
+dados é compatível com uma afirmação inicial de referência, chamada hipótese nula.
+
+Em termos práticos, o teste não prova verdades definitivas. Ele ajuda a decidir
+se os dados oferecem evidência suficiente para questionar essa hipótese inicial.
+
+# Hipótese nula e hipótese alternativa
+
+## Hipótese nula
+
+Costuma representar ausência de efeito, ausência de diferença ou ausência de
+associação.
+
+## Hipótese alternativa
+
+Representa a possibilidade de diferença, efeito ou associação relevante para o
+problema estudado.
+
+# O valor de p deve ser lido com cuidado
+
+O valor de $p$ não mede a importância biológica de um resultado. Ele indica o
+grau de compatibilidade entre os dados observados e a hipótese nula, dentro do
+modelo estatístico adotado.
+
+Por isso, a interpretação correta nunca deve depender apenas do valor de $p$.
+É preciso considerar também:
+
+- o tamanho do efeito;
+- a direção da diferença;
+- a variabilidade dos dados;
+- o contexto biológico ou produtivo.
+
+# Quando o teste t aparece?
+
+O teste t é uma ferramenta clássica para comparar médias quando a pergunta envolve:
+
+- uma média em relação a um valor de referência; ou
+- duas médias entre grupos.
+
+No contexto do projeto, a situação mais recorrente é a comparação entre dois grupos.
+
+# O que precisa ser observado antes da conclusão
+
+Ao trabalhar com o teste t, convém observar:
+
+- se os grupos estão bem definidos;
+- se a variável resposta é quantitativa;
+- se a comparação entre grupos faz sentido para a pergunta da aula;
+- se a leitura gráfica é coerente com o resultado do teste.
+
+# Uma sequência saudável de interpretação
+
+Uma forma simples de interpretar o teste t é seguir esta ordem:
+
+1. descrever visualmente os grupos;
+2. verificar quais médias parecem maiores ou menores;
+3. observar o valor de $p$;
+4. redigir a decisão estatística;
+5. traduzir essa decisão para a linguagem do problema aplicado.
+
+::: {.callout-tip}
+## Tradução prática
+Em vez de escrever apenas que "houve diferença significativa", prefira dizer
+entre quais grupos a diferença apareceu e qual o sentido dessa diferença.
+:::
+
+# Ligação com o relatório prático
+
+Este capítulo conversa diretamente com o relatório de teste t do projeto, no qual
+o gráfico inicial, o resumo dos grupos e a tabela final do teste aparecem juntos.
+
+# Fechamento
+
+Aprender testes de hipóteses não é aprender uma coleção de siglas. É aprender a
+avaliar evidências com cuidado, sempre ligando o resultado estatístico ao problema
+real que motivou a análise.

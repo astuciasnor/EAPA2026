@@ -1,0 +1,138 @@
+---
+title: "Modelo base de relatório"
+subtitle: "Quarto + RStudio | preenchimento guiado"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+::: callout-note
+## Nível indicado
+
+Use este arquivo na primeira aula prática ou como modelo para copiar.
+:::
+
+# Como usar este modelo
+
+::: callout-note
+## Ideia central
+
+Este arquivo foi pensado para que a aula seja **mais prática do que técnica**. A pessoa abre o `.qmd`, troca poucas linhas, renderiza e já começa a enxergar os resultados no HTML.
+:::
+
+## O que costuma ser suficiente editar
+
+1.  **Título do relatório**
+2.  **Nome da aba do Excel**
+3.  **Nomes das variáveis**
+4.  **Texto curto de interpretação**
+
+## Fluxo de trabalho
+
+1.  Abrir o projeto `EAPA2026.Rproj`
+2.  Abrir um `.qmd`
+3.  Trocar a aba do Excel
+4.  Fazer pequenos ajustes
+5.  Clicar em **Render**
+6.  Ler e discutir o resultado
+
+## O que editar primeiro
+
+1.  **Título do relatório**
+2.  **Nome da aba do Excel**
+3.  **Nome da variável do gráfico**
+4.  **Texto curto de interpretação**
+
+# Pacotes principais
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "10.caranguejos"
+# ===== FIM DA EDIÇÃO ==================================================
+
+readxl::excel_sheets(arquivo_excel)
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+::: callout-tip
+## Dica sobre `here()`
+
+Mesmo que o `.qmd` esteja em uma subpasta de `relatorios/`, o `here()` procura o arquivo a partir da raiz do projeto.
+:::
+
+# Conhecendo a base
+
+```{r}
+glimpse(dados)
+summary(dados)
+```
+
+```{r}
+head(dados, 10) |>
+  tabela_relatorio(titulo = "Primeiras linhas da base.")
+```
+
+# Pequena edição dos dados
+
+```{r}
+dados_limpos <- dados |>
+  drop_na()
+
+dados_limpos
+```
+
+# Gráfico inicial
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+variavel_grafico <- "lc"
+
+ggplot(dados_limpos, aes(x = .data[[variavel_grafico]])) +
+  geom_histogram(bins = 12) +
+  labs(
+    title = "Distribuição da variável escolhida",
+    x = variavel_grafico,
+    y = "Frequência"
+  ) +
+  theme_minimal(base_size = 12)
+# ===== FIM DA EDIÇÃO ==================================================
+```
+
+# Escrevendo fórmulas
+
+A média amostral é $\bar{x}$, o desvio-padrão é $s$ e o tamanho amostral é $n$.
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+$$
+
+# Resultado e interpretação
+
+## Resultado
+
+Escreva aqui o que apareceu no gráfico ou no teste principal.
+
+## Interpretação
+
+> Em linguagem simples, descreva o que os dados sugerem e como isso dialoga com a pergunta da aula.
+
+# Conclusão
+
+Feche em duas ou três frases curtas conectando resultado estatístico,
+interpretação e contexto biológico.

@@ -1,0 +1,125 @@
+---
+title: "Teste t"
+subtitle: "Comparação de duas médias"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Comparar duas médias usando dados importados do Excel.
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **2.bezero_2am**, com as colunas `breed` e `peso`.
+Você pode trocar a aba e os nomes das variáveis.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(rstatix)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "2.bezero_2am"
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names() |>
+  mutate(breed = as.factor(breed))
+
+dados
+```
+
+# Conhecendo a base
+
+```{r}
+glimpse(dados)
+
+dados |>
+  group_by(breed) |>
+  summarise(
+    n = n(),
+    media = mean(peso, na.rm = TRUE),
+    dp = sd(peso, na.rm = TRUE)
+  ) |>
+  tabela_relatorio(titulo = "Resumo por grupo.", digits = 2)
+```
+
+# Gráfico inicial
+
+```{r}
+ggplot(dados, aes(x = breed, y = peso, fill = breed)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.08, alpha = 0.7) +
+  labs(
+    title = "Comparação visual entre os grupos",
+    x = "Grupo",
+    y = "Peso"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+# Verificação inicial
+
+```{r}
+dados |>
+  group_by(breed) |>
+  shapiro_test(peso)
+
+dados |>
+  levene_test(peso ~ breed)
+```
+
+# Hipóteses
+
+$$
+H_0:\ \mu_1 = \mu_2
+\qquad\text{e}\qquad
+H_1:\ \mu_1 \neq \mu_2
+$$
+
+# Teste t
+
+```{r}
+resultado_t <- t.test(peso ~ breed, data = dados, var.equal = TRUE)
+
+resultado_t
+```
+
+# Tabela resumida do teste
+
+```{r}
+tibble(
+  estatistica_t = unname(resultado_t$statistic),
+  gl = unname(resultado_t$parameter),
+  valor_p = resultado_t$p.value,
+  media_grupo_1 = unname(resultado_t$estimate[1]),
+  media_grupo_2 = unname(resultado_t$estimate[2])
+) |>
+  tabela_relatorio(titulo = "Resumo do teste t.", digits = 4)
+```
+
+# Interpretação guiada
+
+## Modelo de texto
+
+> O teste t foi aplicado para comparar os grupos presentes na base.
+> O valor de $p$ encontrado foi **`r signif(resultado_t$p.value, 4)`**.
+> Com base nesse resultado, a decisão estatística deve ser descrita de forma
+> clara, indicando se houve ou não evidência de diferença entre as médias.
+
+# Conclusão
+
+Escreva duas ou três frases finais conectando o teste estatístico ao problema da aula.

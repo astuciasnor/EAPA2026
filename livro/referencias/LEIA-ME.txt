@@ -1,0 +1,7 @@
+Nesta pasta ficam os arquivos bibliográficos do livro:
+
+- references.bib
+- food-chemistry.csl
+
+O livro já está configurado para usar esses dois arquivos.
+Para citar no texto, use a sintaxe normal do Quarto, como em [@björnsson1994].

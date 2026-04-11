@@ -1,0 +1,9 @@
+ANCOVA
+
+Nível indicado: intermediário.
+Aba recomendada: 28.ancova_demo.
+O que este relatório faz: compara grupos controlando o efeito de uma covariável.
+O que editar primeiro: aba da planilha, nomes das variáveis e texto de interpretação.
+Saída esperada: gráfico com retas ajustadas, tabela do modelo e médias ajustadas.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

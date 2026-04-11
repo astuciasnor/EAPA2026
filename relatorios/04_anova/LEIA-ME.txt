@@ -1,0 +1,9 @@
+ANOVA
+
+Nível indicado: iniciante.
+Aba recomendada: 11.leite_tuber.
+O que este relatório faz: compara médias de vários tratamentos e mostra comparação múltipla.
+O que editar primeiro: aba da planilha, variáveis do modelo e interpretação final.
+Saída esperada: gráfico, tabela de médias e resultado da ANOVA.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

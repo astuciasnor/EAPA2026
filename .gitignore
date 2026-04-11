@@ -1,0 +1,36 @@
+# Metadados locais do R e do Quarto
+.Rproj.user/
+.quarto/
+.Rhistory
+.RData
+.Ruserdata
+
+# Saidas renderizadas e cache do projeto
+_saida/
+_freeze/
+livro/_site/
+
+# Artefatos gerados fora da pasta principal de saida
+relatorios/**/*.html
+!relatorios/_common/modelo_relatorio_aula.html
+relatorios/**/_files/
+!relatorios/_common/modelo_relatorio_aula_files/
+!relatorios/_common/modelo_relatorio_aula_files/**
+
+# Dados locais e confidenciais
+dados/
+
+# Arquivos de ambiente local
+.Renviron
+.Renviron.site
+.env
+.env.*
+
+# Temporarios do sistema/editor
+Thumbs.db
+.DS_Store
+Desktop.ini
+*.log
+*.tmp
+*.bak
+*~

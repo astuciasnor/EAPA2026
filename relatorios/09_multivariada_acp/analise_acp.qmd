@@ -1,0 +1,131 @@
+---
+title: "Análise de componentes principais (ACP)"
+subtitle: "Redução de dimensionalidade e interpretação"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Resumir várias variáveis em poucos componentes e visualizar padrões gerais.
+
+::: {.callout-note}
+## Nível indicado
+Avançado. Na primeira leitura, não altere o algoritmo da ACP.
+Troque apenas a aba, a coluna identificadora e a interpretação final.
+:::
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **ecomorfologico**.
+A coluna `especie` funciona como identificador.
+:::
+
+::: {.callout-tip}
+## Roteiro mínimo para a primeira leitura
+1. Observe quanta variância os primeiros componentes explicam.
+2. Veja onde as unidades aparecem no biplot.
+3. Identifique as variáveis com maior contribuição.
+4. Escreva uma interpretação curta dos dois primeiros componentes.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(FactoMineR)
+library(factoextra)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "ecomorfologico"
+# ===== FIM DA EDIÇÃO ==================================================
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+# Preparação dos dados
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+variavel_id <- "especie"
+componentes_destacados <- c("Dim.1", "Dim.2")
+# ===== FIM DA EDIÇÃO ==================================================
+
+matriz <- dados |>
+  select(-all_of(variavel_id)) |>
+  as.data.frame()
+
+rownames(matriz) <- dados[[variavel_id]]
+
+resultado_acp <- FactoMineR::PCA(matriz, scale.unit = TRUE, graph = FALSE)
+```
+
+# Variância explicada
+
+```{r}
+factoextra::fviz_eig(resultado_acp, addlabels = TRUE)
+```
+
+```{r}
+variancia_componentes <- as.data.frame(resultado_acp$eig)
+names(variancia_componentes) <- c(
+  "autovalor",
+  "variancia_percentual",
+  "variancia_acumulada"
+)
+
+variancia_componentes |>
+  tibble::rownames_to_column(var = "componente") |>
+  select(componente, autovalor, variancia_percentual, variancia_acumulada) |>
+  slice_head(n = 4) |>
+  tabela_relatorio(titulo = "Variância explicada pelos primeiros componentes.", digits = 2)
+```
+
+# Coordenadas das unidades
+
+```{r}
+as.data.frame(resultado_acp$ind$coord) |>
+  rownames_to_column(var = variavel_id) |>
+  select(all_of(c(variavel_id, componentes_destacados))) |>
+  tabela_relatorio(titulo = "Coordenadas das espécies nos componentes principais.", digits = 3)
+```
+
+# Biplot
+
+```{r}
+factoextra::fviz_pca_biplot(
+  resultado_acp,
+  repel = TRUE
+)
+```
+
+# Contribuição das variáveis
+
+```{r}
+factoextra::fviz_pca_var(resultado_acp, col.var = "contrib")
+```
+
+# Interpretação guiada
+
+> A ACP ajuda a visualizar quais variáveis mais contribuem para os componentes
+> e como as unidades se distribuem no espaço multivariado.
+> Unidades próximas tendem a ser mais parecidas; vetores mais longos costumam
+> indicar maior contribuição da variável.
+
+# Conclusão
+
+Explique o que os dois primeiros componentes revelam e quais variáveis parecem mais importantes.

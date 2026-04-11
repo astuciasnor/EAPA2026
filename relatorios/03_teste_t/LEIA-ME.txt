@@ -1,0 +1,9 @@
+Teste t
+
+Nível indicado: iniciante.
+Aba recomendada: 2.bezero_2am.
+O que este relatório faz: compara duas médias, mostra gráfico inicial e resume o teste t.
+O que editar primeiro: aba da planilha, nomes das variáveis e conclusão.
+Saída esperada: gráfico, tabela resumo e decisão estatística.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

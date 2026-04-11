@@ -1,0 +1,136 @@
+---
+title: "Regressão não linear"
+subtitle: "Modelo logístico de crescimento"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Ajustar um modelo não linear quando a relação entre as variáveis não é bem
+representada por uma reta.
+
+::: {.callout-note}
+## Nível indicado
+Avançado. Na primeira aula com este modelo, não altere a fórmula do ajuste.
+Troque primeiro a aba da planilha e o texto de interpretação.
+:::
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **29.reg_nlinear_demo**, com:
+- `tempo_dias`
+- `peso_medio_g`
+:::
+
+::: {.callout-tip}
+## Roteiro mínimo para a primeira leitura
+1. Observe o gráfico dos dados.
+2. Veja se a curva ajustada acompanha a tendência.
+3. Leia os parâmetros estimados sem tentar alterar a fórmula.
+4. Escreva a interpretação biológica do padrão.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(broom)
+library(nlstools)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "29.reg_nlinear_demo"
+# ===== FIM DA EDIÇÃO ==================================================
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+# Gráfico inicial
+
+```{r}
+ggplot(dados, aes(x = tempo_dias, y = peso_medio_g)) +
+  geom_point(size = 2) +
+  labs(
+    title = "Padrão não linear dos dados",
+    x = "Tempo (dias)",
+    y = "Peso médio (g)"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Ajuste do modelo logístico
+
+```{r}
+modelo_nl <- nls(
+  peso_medio_g ~ SSlogis(tempo_dias, Asym, xmid, scal),
+  data = dados
+)
+
+resumo_modelo <- summary(modelo_nl)
+```
+
+# Parâmetros estimados
+
+```{r}
+tibble(
+  parametro = names(coef(modelo_nl)),
+  estimativa = unname(coef(modelo_nl))
+) |>
+  tabela_relatorio(titulo = "Parâmetros do modelo não linear.", digits = 4)
+```
+
+# Curva ajustada
+
+```{r}
+novos <- tibble(
+  tempo_dias = seq(min(dados$tempo_dias), max(dados$tempo_dias), length.out = 200)
+)
+
+novos$peso_ajustado <- predict(modelo_nl, newdata = novos)
+
+ggplot(dados, aes(x = tempo_dias, y = peso_medio_g)) +
+  geom_point(size = 2) +
+  geom_line(data = novos, aes(y = peso_ajustado), linewidth = 1) +
+  labs(
+    title = "Curva logística ajustada",
+    x = "Tempo (dias)",
+    y = "Peso médio (g)"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Resíduos
+
+```{r}
+residuos <- resid(modelo_nl)
+
+tibble(
+  observacao = seq_along(residuos),
+  residuo = residuos
+) |>
+  tabela_relatorio(titulo = "Resíduos do modelo.", digits = 4)
+```
+
+# Interpretação guiada
+
+> Modelos não lineares são úteis quando a variável resposta cresce, desacelera
+> e tende a estabilizar, ou quando apresenta padrões curvilíneos.
+> Nesse caso, a curva ajustada descreve melhor a trajetória observada nos dados.
+
+# Conclusão
+
+Explique se a curva capturou bem o comportamento dos dados e qual o significado biológico desse padrão.

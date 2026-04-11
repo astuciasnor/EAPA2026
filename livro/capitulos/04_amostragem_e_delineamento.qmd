@@ -1,0 +1,82 @@
+---
+title: "Amostragem e Delineamento"
+---
+
+# Por que planejar antes?
+
+Uma análise bem feita depende de um dado bem produzido. Se a amostragem for mal
+pensada ou se o delineamento experimental for inadequado, a interpretação pode
+ficar comprometida mesmo quando o relatório estiver tecnicamente correto.
+
+# Planejamento amostral
+
+Em problemas de campo e monitoramento, uma pergunta comum é: quantas unidades eu
+preciso observar para estimar um parâmetro com precisão aceitável?
+
+Essa decisão depende de elementos como:
+
+- variabilidade esperada dos dados;
+- erro admissível;
+- nível de confiança;
+- tamanho da população, quando ela é finita.
+
+Quanto maior a variabilidade e menor o erro tolerado, maior tende a ser a amostra necessária.
+
+# O papel da amostra piloto
+
+Em muitas situações, uma amostra piloto ajuda a estimar a variabilidade inicial
+e a tornar o planejamento mais realista. Isso é especialmente útil quando não se
+conhece bem o comportamento prévio da variável de interesse.
+
+# Delineamento experimental
+
+Quando há tratamentos a comparar, o planejamento passa a incluir também a forma
+como esses tratamentos são distribuídos entre as unidades experimentais.
+
+## DIC
+
+O delineamento inteiramente casualizado é adequado quando as unidades são
+consideradas relativamente homogêneas.
+
+## DBC
+
+O delineamento em blocos casualizados é útil quando existe uma fonte conhecida de
+variação que pode ser controlada por blocos.
+
+## DQL
+
+O quadrado latino aparece quando se deseja controlar duas fontes de variação.
+
+## Fatorial
+
+O esquema fatorial permite estudar mais de um fator ao mesmo tempo e observar
+também a possibilidade de interação entre eles.
+
+# O que precisa ficar claro para o estudante
+
+Antes de decorar nomes de delineamentos, o mais importante é entender:
+
+- qual é a unidade experimental;
+- quantos tratamentos existem;
+- se há blocos ou outras fontes de variação relevantes;
+- se a pergunta envolve um fator ou mais de um fator.
+
+::: {.callout-note}
+## Ligação com os relatórios
+Este capítulo conversa diretamente com os relatórios de planejamento amostral e
+planejamento de experimentos do projeto.
+:::
+
+# Erros frequentes no início
+
+Alguns erros bastante comuns são:
+
+- confundir unidade amostral com unidade experimental;
+- coletar menos dados do que o necessário;
+- ignorar fontes óbvias de variação;
+- escolher o delineamento pela sigla, e não pela lógica do problema.
+
+# Fechamento
+
+Planejar bem não é burocracia. É a etapa que dá sustentação para que a análise
+estatística posterior faça sentido técnico e científico.

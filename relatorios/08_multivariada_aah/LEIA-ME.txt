@@ -1,0 +1,9 @@
+Análise multivariada (AAH)
+
+Nível indicado: avançado.
+Aba recomendada: ecomorfologico.
+O que este relatório faz: agrupa unidades por semelhança e organiza os grupos em tabela final.
+O que editar primeiro: aba da planilha, coluna identificadora e número de grupos.
+Saída esperada: dendrograma, prévia da matriz padronizada e tabela de grupos.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

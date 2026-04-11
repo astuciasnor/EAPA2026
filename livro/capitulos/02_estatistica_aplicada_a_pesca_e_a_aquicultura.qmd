@@ -1,0 +1,91 @@
+---
+title: "Estatística Aplicada à Pesca e à Aquicultura"
+---
+
+# Por que a estatística importa aqui?
+
+Na pesca e na aquicultura, decisões técnicas raramente dependem de uma única
+medida isolada. Em geral, é preciso comparar lotes, avaliar crescimento,
+descrever populações, medir variabilidade e verificar se um padrão observado é
+compatível com a pergunta feita.
+
+A estatística aplicada entra exatamente nesse ponto: ela ajuda a organizar a
+incerteza e a transformar observações em argumentos técnicos mais confiáveis.
+
+# Situações comuns na engenharia aquícola
+
+Algumas perguntas típicas da área incluem:
+
+- peixes ou camarões cresceram de forma diferente entre manejos?
+- um tratamento alterou peso, comprimento ou sobrevivência?
+- o tamanho amostral usado foi suficiente?
+- duas medidas corporais estão associadas?
+- grupos de espécies ou indivíduos apresentam perfis semelhantes?
+
+Cada uma dessas perguntas tende a exigir uma estrutura de dados e uma análise
+mais adequada.
+
+Em estudos de aquicultura, perguntas sobre densidade, crescimento e desempenho
+produtivo aparecem com muita frequência, como em pesquisas sobre estocagem e
+resposta de cultivo [@björnsson1994].
+
+# Observação, monitoramento e experimento
+
+Nem todo dado nasce do mesmo tipo de estudo.
+
+## Dados observacionais
+
+São dados coletados sem controle direto do pesquisador sobre os tratamentos.
+Eles são comuns em desembarque pesqueiro, monitoramento ambiental e séries de
+campo.
+
+## Dados experimentais
+
+São dados produzidos em situações com algum controle de tratamentos, unidades
+experimentais e condições de comparação. Isso é frequente em viveiros, tanques,
+laboratórios ou ensaios de manejo.
+
+Essa distinção importa porque afeta a forma de interpretar os resultados e o
+alcance das conclusões.
+
+# Unidade amostral e unidade experimental
+
+Dois conceitos precisam ficar claros desde cedo.
+
+## Unidade amostral
+
+É a menor unidade observada ou medida no conjunto de dados. Pode ser um peixe,
+uma coleta, um tanque avaliado ou uma embarcação, dependendo do estudo.
+
+## Unidade experimental
+
+É a menor unidade que recebeu o tratamento de interesse. Em experimentos, ela é
+fundamental para definir a análise correta.
+
+Confundir esses dois níveis pode levar a conclusões estatísticas incorretas.
+
+# Variabilidade não é defeito
+
+Um erro comum no início do estudo é tratar a variabilidade como algo negativo.
+Na prática, a variabilidade é parte da realidade biológica e produtiva. A função
+da estatística não é eliminar essa variação, mas descrevê-la e levá-la em conta.
+
+::: {.callout-note}
+## Leitura importante
+Quando dois conjuntos de dados diferem, o que importa não é apenas a diferença
+entre médias, mas também a dispersão, o tamanho da amostra e o contexto em que
+os dados foram produzidos.
+:::
+
+# A pergunta vem antes da técnica
+
+Em disciplinas aplicadas, existe uma tentação frequente: procurar uma técnica e
+só depois encaixar uma pergunta. O caminho correto é o contrário.
+
+Primeiro define-se o problema. Depois se observa a estrutura dos dados. Só então
+se escolhe a análise mais coerente.
+
+# Direção do livro
+
+Os capítulos seguintes foram organizados para ajudar exatamente nessa passagem:
+da pergunta aplicada para a leitura cuidadosa dos dados e das análises.

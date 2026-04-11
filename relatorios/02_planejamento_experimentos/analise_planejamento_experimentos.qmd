@@ -1,0 +1,193 @@
+---
+title: "Planejamento de experimentos"
+subtitle: "DIC, DBC, DQL e esquema fatorial"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Montar um delineamento experimental de forma guiada, com sorteio das parcelas,
+usando Quarto e uma planilha Excel de apoio.
+
+::: {.callout-note}
+## Nível indicado
+Intermediário. Na primeira leitura, mantenha o delineamento do exemplo e observe
+como o plano experimental é montado antes de trocar a estrutura do desenho.
+:::
+
+::: {.callout-note}
+## O que editar neste arquivo
+Edite principalmente:
+- o tipo de delineamento;
+- os nomes dos tratamentos;
+- o número de repetições ou blocos;
+- o texto de justificativa.
+:::
+
+::: {.callout-tip}
+## Roteiro mínimo para a primeira leitura
+1. Veja qual delineamento foi escolhido.
+2. Observe a tabela de tratamentos.
+3. Confira o plano sorteado.
+4. Explique por que esse delineamento faz sentido para a aula.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(agricolae)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Leitura da planilha de apoio
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "27.plan_exp_demo"
+# ===== FIM DA EDIÇÃO ==================================================
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+# Configuração do delineamento
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+# Escolha: "DIC", "DBC", "DQL" ou "DF"
+delineamento <- "DBC"
+
+# A partir da planilha de apoio, podemos reaproveitar os tratamentos
+tratamentos <- sort(unique(dados$tratamento))
+
+# Ajuste conforme a aula
+repeticoes <- 4
+blocos <- 4
+
+# Para fatorial, edite estes níveis
+fator_a <- c("A1", "A2")
+fator_b <- c("B1", "B2", "B3")
+# ===== FIM DA EDIÇÃO ==================================================
+
+set.seed(123)
+```
+
+```{r}
+tibble(
+  delineamento = c("DIC", "DBC", "DQL", "DF"),
+  uso_tipico = c(
+    "experimento sem blocos",
+    "experimento com blocos",
+    "quadrado latino",
+    "fatorial simples"
+  )
+) |>
+  tabela_relatorio(titulo = "Guia rápido dos delineamentos.")
+```
+
+# Tabela de tratamentos
+
+```{r}
+tibble(tratamento = tratamentos) |>
+  tabela_relatorio(titulo = "Tratamentos considerados no planejamento.")
+```
+
+# Geração do delineamento
+
+```{r}
+if (delineamento == "DIC") {
+  sorteio <- agricolae::design.crd(
+    trt = tratamentos,
+    r = repeticoes,
+    seed = 123,
+    kinds = "Super-Duper",
+    serie = 2
+  )$book
+}
+
+if (delineamento == "DBC") {
+  sorteio <- agricolae::design.rcbd(
+    trt = tratamentos,
+    r = blocos,
+    seed = 123,
+    kinds = "Super-Duper",
+    serie = 2
+  )$book
+}
+
+if (delineamento == "DQL") {
+  sorteio <- agricolae::design.lsd(
+    trt = tratamentos,
+    seed = 123,
+    kinds = "Super-Duper",
+    serie = 2
+  )$sketch |>
+    as.data.frame() |>
+    tibble::rownames_to_column(var = "linha")
+}
+
+if (delineamento == "DF") {
+  sorteio <- tidyr::expand_grid(
+    fator_a = fator_a,
+    fator_b = fator_b,
+    repeticao = 1:repeticoes
+  ) |>
+    mutate(tratamento = paste(fator_a, fator_b, sep = "_")) |>
+    slice_sample(prop = 1)
+}
+```
+
+# Apresentação do plano experimental
+
+```{r}
+if (is.data.frame(sorteio)) {
+  sorteio |>
+    tabela_relatorio(titulo = "Plano experimental gerado.")
+}
+```
+
+# Representação simples do arranjo
+
+```{r}
+if (delineamento %in% c("DIC", "DBC", "DF") && is.data.frame(sorteio)) {
+  tabela_arranjo <- sorteio |>
+    mutate(posicao = row_number()) |>
+    select(everything())
+
+  tabela_arranjo |>
+    tabela_relatorio(titulo = "Arranjo resumido para organização das parcelas.")
+}
+```
+
+# Justificativa do delineamento
+
+## Modelo de texto
+
+> O delineamento escolhido foi **`r delineamento`**.
+> Esse desenho é adequado para a estrutura experimental da aula porque organiza
+> as unidades experimentais de forma coerente com as fontes de variação do problema.
+> O plano sorteado facilita a execução prática e prepara a análise estatística posterior.
+
+# Dica didática
+
+::: {.callout-tip}
+## Como aproveitar em aula
+O aluno não precisa aprender toda a sintaxe de uma vez.
+Basta trocar o tipo de delineamento, revisar os tratamentos e observar a tabela
+de sorteio sendo gerada no relatório.
+:::
+
+# Conclusão
+
+Finalize em três pontos: qual delineamento foi usado, por que ele faz sentido
+e qual cuidado experimental ele ajuda a controlar.

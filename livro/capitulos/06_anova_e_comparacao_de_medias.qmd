@@ -1,0 +1,77 @@
+---
+title: "ANOVA e Comparação de Médias"
+---
+
+# Quando a ANOVA entra em cena?
+
+A ANOVA é usada quando a pergunta envolve comparar três ou mais médias ao mesmo
+tempo. Em vez de fazer várias comparações isoladas, ela permite avaliar se há
+evidência de diferença global entre os grupos.
+
+Na engenharia aquícola, isso pode aparecer em situações como:
+
+- comparação de tratamentos alimentares;
+- comparação de densidades de estocagem;
+- comparação de manejos ou ambientes;
+- comparação de lotes ou condições experimentais.
+
+Estudos de desempenho aquícola frequentemente exigem esse tipo de comparação entre
+tratamentos [@björnsson1994].
+
+# Hipóteses da ANOVA
+
+Em termos gerais, a ANOVA testa:
+
+- hipótese nula: todas as médias são iguais;
+- hipótese alternativa: pelo menos uma média difere.
+
+Isso significa que o primeiro resultado da ANOVA não diz imediatamente quais
+grupos diferem, mas sim se existe evidência de diferença em algum ponto do conjunto.
+
+# O que precisa ser lido antes do valor de p?
+
+Antes da tabela final da ANOVA, vale observar:
+
+- o gráfico dos grupos;
+- o número de observações em cada tratamento;
+- a variabilidade dentro dos grupos;
+- a coerência do delineamento experimental.
+
+Essa leitura inicial ajuda a evitar conclusões mecânicas.
+
+# O que vem depois da ANOVA?
+
+Quando a diferença global é relevante, costuma ser necessário um passo adicional:
+uma comparação múltipla de médias.
+
+Essa etapa ajuda a responder com mais clareza:
+
+- quais grupos se aproximam;
+- quais grupos se afastam;
+- que padrão de ordenação aparece entre os tratamentos.
+
+# ANOVA não substitui interpretação
+
+Mesmo quando o teste indica diferença, a conclusão final ainda precisa responder:
+
+- a diferença é grande ou pequena?
+- ela faz sentido biologicamente?
+- ela é útil do ponto de vista técnico ou produtivo?
+
+::: {.callout-tip}
+## Regra prática
+Evite concluir apenas que "houve diferença significativa". Diga entre quais
+tratamentos aparecem os contrastes mais importantes e o que isso representa no
+contexto da aula.
+:::
+
+# Ligação com o relatório prático
+
+Este capítulo conversa diretamente com o relatório de ANOVA do projeto, no qual
+aparecem gráfico inicial, tabela de resumo, teste global e comparação de médias.
+
+# Fechamento
+
+A ANOVA deve ser entendida como uma ferramenta de comparação estruturada. Ela é
+mais útil quando o estudante consegue ligar a tabela do teste à leitura do gráfico,
+ao delineamento e ao problema biológico ou produtivo que motivou a análise.

@@ -1,0 +1,9 @@
+Gráficos com ggplot2
+
+Nível indicado: iniciante.
+Aba recomendada: 10.caranguejos.
+O que este relatório faz: mostra exemplos prontos de histogramas, boxplots, dispersões e barras.
+O que editar primeiro: aba da planilha, variáveis dos eixos e tipo de gráfico.
+Saída esperada: conjunto de gráficos e texto curto de interpretação.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

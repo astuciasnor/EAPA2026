@@ -1,0 +1,9 @@
+Análise multivariada (ACP)
+
+Nível indicado: avançado.
+Aba recomendada: ecomorfologico.
+O que este relatório faz: resume muitas variáveis em poucos componentes e mostra padrões gerais.
+O que editar primeiro: aba da planilha, coluna identificadora e interpretação dos dois primeiros componentes.
+Saída esperada: gráfico de variância explicada, biplot e tabelas da ACP.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

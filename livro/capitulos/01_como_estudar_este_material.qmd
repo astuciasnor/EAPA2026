@@ -1,0 +1,73 @@
+---
+title: "Como Estudar Este Material"
+---
+
+# Ideia central
+
+Este livro foi construído para acompanhar uma disciplina prática. Isso significa
+que ele não deve ser lido como um tratado isolado, mas como apoio para observar,
+entender e interpretar as análises feitas nos arquivos `.qmd` do projeto.
+
+# Uma rotina simples de estudo
+
+Uma forma produtiva de usar o material é seguir esta sequência:
+
+1. identificar a pergunta do problema;
+2. reconhecer quais dados foram usados;
+3. observar o gráfico e a tabela principal;
+4. entender qual análise foi escolhida;
+5. interpretar o resultado em linguagem clara.
+
+Essa ordem ajuda a evitar um erro comum no início: tentar decorar comandos sem
+entender primeiro o raciocínio estatístico.
+
+# Três perguntas para cada análise
+
+Em qualquer capítulo ou relatório, vale fazer três perguntas básicas:
+
+## 1. Qual problema queremos responder?
+
+A análise estatística precisa nascer de uma pergunta concreta. Em engenharia
+aquícola, isso pode envolver crescimento, produção, qualidade da água, manejo,
+diferença entre tratamentos ou estrutura morfométrica.
+
+## 2. Que tipo de dado temos em mãos?
+
+Antes de escolher a análise, é preciso reconhecer se os dados são:
+
+- quantitativos ou qualitativos;
+- contínuos ou discretos;
+- observacionais ou experimentais;
+- de uma única amostra, de grupos ou de relações entre variáveis.
+
+## 3. O que o resultado permite afirmar?
+
+O objetivo final não é apenas obter um valor de $p$, um gráfico bonito ou uma
+tabela formatada. O objetivo é construir uma conclusão defensável, coerente com
+os dados e com a pergunta científica feita.
+
+# Como ler tabelas e gráficos
+
+No começo do curso, a leitura dos resultados deve priorizar:
+
+- o que está sendo comparado;
+- a direção do efeito observado;
+- a intensidade aparente do padrão;
+- a coerência biológica, produtiva ou ambiental do resultado.
+
+::: {.callout-tip}
+## Regra prática
+Antes de falar em significância estatística, tente descrever o padrão dos dados
+com palavras simples. Essa etapa melhora muito a interpretação final.
+:::
+
+# Relação entre livro e relatórios
+
+Os relatórios em Quarto mostram a análise em ação. O livro organiza o raciocínio
+por trás dela. Os dois materiais devem andar juntos ao longo da disciplina.
+
+# Meta ao longo do semestre
+
+Ao final do período letivo, a expectativa é que este material funcione como uma
+apostila de consulta, com linguagem clara, foco aplicado e conexão direta com as
+atividades práticas da turma.

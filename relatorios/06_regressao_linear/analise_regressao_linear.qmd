@@ -1,0 +1,143 @@
+---
+title: "Regressão linear"
+subtitle: "Ajuste e interpretação de relação linear"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Modelar a relação entre duas variáveis quantitativas por meio de regressão linear.
+
+::: {.callout-note}
+## Nível indicado
+Intermediário. Na primeira leitura, mantenha as variáveis do exemplo e observe
+primeiro como a reta resume a tendência dos dados.
+:::
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **6.crabs**.
+Ajuste sugerido: `rw ~ cl`.
+:::
+
+::: {.callout-tip}
+## Roteiro mínimo para a primeira leitura
+1. Observe o gráfico de dispersão.
+2. Veja a direção da reta ajustada.
+3. Leia os coeficientes e o resumo do ajuste.
+4. Escreva o que a inclinação sugere no contexto da aula.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(broom)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "6.crabs"
+# ===== FIM DA EDIÇÃO ==================================================
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+# Escolha das variáveis
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+variavel_x <- "cl"
+variavel_y <- "rw"
+# ===== FIM DA EDIÇÃO ==================================================
+```
+
+# Gráfico inicial
+
+```{r}
+ggplot(dados, aes(x = .data[[variavel_x]], y = .data[[variavel_y]])) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(
+    title = "Relação linear entre as variáveis",
+    x = variavel_x,
+    y = variavel_y
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Ajuste do modelo
+
+```{r}
+formula_modelo <- as.formula(paste(variavel_y, "~", variavel_x))
+modelo <- lm(formula_modelo, data = dados)
+```
+
+# Tabela dos coeficientes
+
+```{r}
+broom::tidy(modelo) |>
+  tabela_relatorio(titulo = "Coeficientes da regressão linear.", digits = 4)
+```
+
+# Qualidade do ajuste
+
+```{r}
+broom::glance(modelo) |>
+  select(r.squared, adj.r.squared, sigma, statistic, p.value) |>
+  tabela_relatorio(titulo = "Resumo do ajuste.", digits = 4)
+```
+
+# Equação do modelo
+
+Se o modelo ajustado for $Y = \beta_0 + \beta_1 X$, então:
+
+```{r}
+coeficientes <- coef(modelo)
+intercepto <- round(coeficientes[1], 4)
+inclinação <- round(coeficientes[2], 4)
+
+tibble(
+  Equacao = paste0("y = ", intercepto, " + ", inclinação, "x")
+) |>
+  tabela_relatorio(titulo = "Equação estimada do modelo.")
+```
+
+# Diagnóstico rápido
+
+::: {.callout-note}
+## Leitura sugerida do diagnóstico
+Na primeira aula, use este bloco apenas para observar se os resíduos parecem
+razoavelmente espalhados. Não é necessário aprofundar todos os gráficos agora.
+:::
+
+```{r}
+par(mfrow = c(2, 2))
+plot(modelo)
+par(mfrow = c(1, 1))
+```
+
+# Interpretação guiada
+
+> A regressão linear foi usada para avaliar como a variável resposta muda quando
+> a variável explicativa aumenta.
+> Primeiro, descreva se a relação parece positiva ou negativa.
+> Depois, diga se o ajuste parece forte ou fraco com base no resumo do modelo.
+> Por fim, interprete o significado biológico ou aplicado da inclinação estimada.
+
+# Conclusão
+
+Finalize em três pontos: direção da relação, força do ajuste e interpretação prática.

@@ -1,0 +1,123 @@
+---
+title: "Gráficos com ggplot2"
+subtitle: "Modelos prontos para aula"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Gerar gráficos rapidamente a partir de uma planilha Excel, trocando poucas linhas.
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **10.caranguejos**.
+Você pode adaptar para outras bases trocando os nomes das variáveis.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+```
+
+# Importação dos dados
+
+```{r}
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "10.caranguejos"
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+# 1. Histograma
+
+```{r}
+ggplot(dados, aes(x = lc)) +
+  geom_histogram(bins = 15) +
+  labs(
+    title = "Histograma de LC",
+    x = "LC",
+    y = "Frequência"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# 2. Boxplot
+
+```{r}
+ggplot(dados, aes(x = local, y = cc, fill = local)) +
+  geom_boxplot(alpha = 0.8) +
+  labs(
+    title = "CC por local",
+    x = "Local",
+    y = "CC"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+# 3. Dispersão
+
+```{r}
+ggplot(dados, aes(x = lc, y = cc, color = sexo)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ estacao) +
+  labs(
+    title = "Relação entre LC e CC",
+    x = "LC",
+    y = "CC"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# 4. Barras
+
+```{r}
+dados |>
+  count(local, sexo) |>
+  ggplot(aes(x = local, y = n, fill = sexo)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Contagem por local e sexo",
+    x = "Local",
+    y = "Frequência"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# 5. Modelo para editar
+
+```{r}
+# Troque apenas estas quatro partes:
+# 1) nome da base
+# 2) variável do eixo x
+# 3) variável do eixo y
+# 4) tipo de geom
+
+ggplot(dados, aes(x = lc, y = cc)) +
+  geom_point() +
+  labs(
+    title = "Meu gráfico",
+    x = "LC",
+    y = "CC"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Interpretação guiada
+
+> O objetivo do gráfico é tornar o padrão dos dados visível antes mesmo da
+> análise estatística formal. Em aula, isso ajuda o estudante a compreender o
+> comportamento dos dados com rapidez.
+
+# Conclusão
+
+Escolha o gráfico que melhor comunica a informação da sua aula e explique por quê.

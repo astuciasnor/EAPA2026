@@ -1,0 +1,97 @@
+---
+title: "Leitura de Dados e Gráficos"
+---
+
+# Antes da análise formal
+
+Uma análise estatística quase sempre começa antes do teste propriamente dito.
+Ela começa ao reconhecer como a base está organizada, quais variáveis existem,
+que unidades foram medidas e que padrão inicial aparece nos gráficos.
+
+# Como ler uma planilha de dados
+
+Em geral, uma base organizada para análise segue esta lógica:
+
+- cada linha representa uma observação;
+- cada coluna representa uma variável;
+- cada célula traz um valor associado àquela observação e àquela variável.
+
+Quando essa estrutura está clara, o passo seguinte é entender o papel de cada
+variável no problema.
+
+# Tipos de variáveis mais comuns
+
+## Variáveis quantitativas
+
+São medidas numéricas, como peso, comprimento, temperatura, salinidade ou taxa
+de sobrevivência.
+
+## Variáveis qualitativas
+
+Representam categorias, como tratamento, sexo, local de coleta, estação ou tipo
+de manejo.
+
+Saber distinguir esses tipos é importante porque isso orienta a escolha dos
+gráficos e das análises.
+
+# Por que o gráfico vem cedo?
+
+O gráfico permite ver rapidamente aspectos que uma tabela, sozinha, às vezes não
+mostra tão bem. Entre eles:
+
+- tendência geral;
+- simetria ou assimetria;
+- presença de grupos distintos;
+- valores muito distantes do padrão;
+- relação entre duas variáveis.
+
+# Quatro gráficos fundamentais no começo do curso
+
+## Histograma
+
+Ajuda a ver a distribuição de uma variável quantitativa.
+
+## Boxplot
+
+Ajuda a comparar grupos e a perceber dispersão e possíveis valores extremos.
+
+## Gráfico de dispersão
+
+Ajuda a observar relações entre duas variáveis quantitativas.
+
+## Gráfico de barras
+
+Ajuda a resumir frequências ou contagens por categoria.
+
+# O que observar ao ler um gráfico
+
+Uma leitura inicial pode ser orientada por perguntas como:
+
+- há diferença visível entre grupos?
+- a distribuição parece muito concentrada ou muito espalhada?
+- existe relação crescente ou decrescente entre duas variáveis?
+- o gráfico combina com a pergunta da pesquisa?
+
+::: {.callout-tip}
+## Regra de interpretação
+Descreva primeiro o padrão visual. Só depois conecte esse padrão ao resultado da
+análise estatística.
+:::
+
+# Tabelas também contam uma história
+
+Além dos gráficos, tabelas bem construídas ajudam a organizar:
+
+- tamanho das amostras;
+- médias e medidas de dispersão;
+- coeficientes de modelos;
+- resultados de testes;
+- agrupamentos e coordenadas em análises multivariadas.
+
+Uma boa tabela não repete tudo. Ela destaca o que precisa ser lido.
+
+# Ligação com os relatórios práticos
+
+Os relatórios de gráficos, teste t, ANOVA, regressão e análises multivariadas do
+projeto sempre começam por uma leitura visual ou descritiva. Isso não é detalhe:
+é parte do raciocínio estatístico.

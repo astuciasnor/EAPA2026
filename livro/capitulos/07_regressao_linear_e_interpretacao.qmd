@@ -1,0 +1,81 @@
+---
+title: "Regressão Linear e Interpretação"
+---
+
+# O que a regressão linear procura descrever?
+
+A regressão linear é usada quando a pergunta envolve a relação entre duas variáveis
+quantitativas. Ela ajuda a resumir se a variável resposta tende a aumentar,
+diminuir ou permanecer relativamente estável à medida que a variável explicativa muda.
+
+# Situações comuns na área
+
+Em pesca e aquicultura, esse tipo de análise aparece em perguntas como:
+
+- como peso varia com comprimento;
+- como produção muda com tempo, temperatura ou densidade;
+- como uma medida corporal se relaciona com outra;
+- como um indicador ambiental acompanha uma resposta biológica.
+
+# Elementos centrais do modelo
+
+Dois componentes costumam chamar atenção no início do estudo.
+
+## Intercepto
+
+É o valor esperado da variável resposta quando a variável explicativa vale zero.
+Nem sempre ele tem interpretação biológica direta, mas faz parte da equação da reta.
+
+## Inclinação
+
+É a parte mais importante para a leitura inicial. Ela indica quanto a resposta
+tende a variar, em média, quando a explicativa aumenta uma unidade.
+
+# Como interpretar o ajuste
+
+Uma leitura inicial do modelo linear deve observar:
+
+- o gráfico de dispersão;
+- a direção da reta ajustada;
+- a intensidade aparente da relação;
+- o resumo dos coeficientes;
+- a coerência do ajuste com a pergunta do estudo.
+
+Materiais clássicos de regressão aplicada em R ajudam a organizar esse tipo de
+leitura com foco em interpretação e diagnóstico [@car].
+
+# O que o R² faz e o que ele não faz
+
+O coeficiente de determinação ajuda a resumir quanto da variação observada está
+sendo capturada pelo modelo linear. Ainda assim, ele não deve ser usado sozinho
+como sinônimo de qualidade absoluta.
+
+Um valor alto pode ser útil, mas não substitui:
+
+- a leitura do gráfico;
+- a interpretação da inclinação;
+- a coerência biológica do padrão observado.
+
+# O papel do diagnóstico
+
+Nos relatórios práticos, os gráficos de diagnóstico aparecem como leitura rápida.
+No começo do curso, isso não precisa virar uma etapa excessivamente técnica.
+O importante é perceber se o ajuste parece razoável e se não há um padrão muito
+problemático nos resíduos.
+
+::: {.callout-note}
+## Leitura inicial sugerida
+Na primeira aproximação, o estudante deve focar na direção da relação, na força
+aparente do ajuste e no sentido biológico da inclinação estimada.
+:::
+
+# Ligação com o relatório prático
+
+Este capítulo conversa diretamente com o relatório de regressão linear do projeto,
+no qual a reta ajustada, os coeficientes e o resumo do modelo aparecem juntos.
+
+# Fechamento
+
+A regressão linear é valiosa porque transforma uma nuvem de pontos em uma relação
+interpretável. Seu maior valor didático está em ligar a expressão matemática da reta
+ao significado concreto do fenômeno estudado.

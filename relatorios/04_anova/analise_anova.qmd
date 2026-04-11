@@ -1,0 +1,140 @@
+---
+title: "ANOVA"
+subtitle: "Comparação de três ou mais médias"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Comparar médias de vários tratamentos usando análise de variância.
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **11.leite_tuber**, com as colunas `trat` e `resp`.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(rstatix)
+library(agricolae)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "11.leite_tuber"
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names() |>
+  mutate(trat = as.factor(trat))
+
+dados
+```
+
+# Estatísticas descritivas
+
+```{r}
+dados |>
+  group_by(trat) |>
+  summarise(
+    n = n(),
+    media = mean(resp, na.rm = TRUE),
+    dp = sd(resp, na.rm = TRUE)
+  ) |>
+  tabela_relatorio(titulo = "Resumo por tratamento.", digits = 2)
+```
+
+# Visualização inicial
+
+```{r}
+ggplot(dados, aes(x = trat, y = resp, fill = trat)) +
+  geom_boxplot(alpha = 0.8) +
+  geom_jitter(width = 0.08, alpha = 0.6) +
+  labs(
+    title = "Resposta por tratamento",
+    x = "Tratamento",
+    y = "Resposta"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+```
+
+# Hipóteses
+
+$$
+H_0:\ \mu_1 = \mu_2 = \cdots = \mu_k
+$$
+
+$$
+H_1:\ \text{pelo menos uma média difere}
+$$
+
+# Ajuste do modelo
+
+```{r}
+modelo <- aov(resp ~ trat, data = dados)
+summary(modelo)
+```
+
+# Verificação dos pressupostos
+
+```{r}
+shapiro.test(residuals(modelo))
+car::leveneTest(resp ~ trat, data = dados)
+```
+
+# Comparação de médias
+
+```{r}
+tukey <- agricolae::HSD.test(modelo, "trat", group = TRUE)
+tukey$groups
+```
+
+```{r}
+tukey$groups |>
+  rownames_to_column(var = "tratamento") |>
+  arrange(desc(resp)) |>
+  tabela_relatorio(titulo = "Comparação de médias com agrupamento de letras.", digits = 3)
+```
+
+# Gráfico com médias
+
+```{r}
+medias <- dados |>
+  group_by(trat) |>
+  summarise(
+    media = mean(resp),
+    se = sd(resp) / sqrt(n()),
+    .groups = "drop"
+  )
+
+ggplot(medias, aes(x = trat, y = media)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = media - se, ymax = media + se), width = 0.15) +
+  labs(
+    title = "Médias dos tratamentos",
+    x = "Tratamento",
+    y = "Média da resposta"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Interpretação guiada
+
+> A ANOVA indicou se há ou não diferença global entre as médias dos tratamentos.
+> Quando a ANOVA é significativa, a comparação múltipla ajuda a identificar quais
+> tratamentos se diferenciam entre si.
+
+# Conclusão
+
+Finalize relacionando o resultado da ANOVA à pergunta biológica, zootécnica ou experimental da aula.

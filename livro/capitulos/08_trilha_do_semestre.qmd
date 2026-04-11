@@ -1,0 +1,65 @@
+---
+title: "Trilha do Semestre e Plano de Expansão"
+---
+
+# Como este livro deve crescer
+
+Este livro foi pensado para crescer junto com a disciplina. A proposta não é
+escrever tudo de uma vez, mas consolidar um material claro, aplicado e cumulativo
+ao longo do período letivo.
+
+# O que já está pronto
+
+Neste momento, o livro já tem uma base para apoiar:
+
+- como estudar o material;
+- a lógica da estatística aplicada à pesca e à aquicultura;
+- leitura de dados e gráficos;
+- amostragem e delineamento;
+- testes de hipóteses e teste t;
+- ANOVA e regressão linear.
+
+# Próximos blocos recomendados
+
+Uma sequência pedagógica enxuta para o restante do semestre pode seguir esta ordem.
+
+| Bloco | Tema do livro | Relatório prático associado |
+|---|---|---|
+| 1 | leitura de dados e gráficos | 00 modelo base, 10 gráficos |
+| 2 | amostragem e delineamento | 01 planejamento amostral, 02 planejamento de experimentos |
+| 3 | comparação de médias | 03 teste t, 04 ANOVA |
+| 4 | ajuste por covariável | 05 ANCOVA |
+| 5 | modelagem linear | 06 regressão linear |
+| 6 | modelagem não linear | 07 regressão não linear |
+| 7 | leitura multivariada | 08 AAH, 09 ACP |
+
+# Estrutura sugerida para cada novo capítulo
+
+Para manter o livro homogêneo, cada capítulo novo pode seguir a mesma lógica:
+
+1. quando usar a análise;
+2. que tipo de dado ela exige;
+3. como interpretar os resultados;
+4. erros comuns no início;
+5. ligação com o relatório prático correspondente.
+
+# O que vale aprofundar depois
+
+Ao longo do semestre, alguns pontos podem ser ampliados aos poucos:
+
+- exemplos mais diretamente ligados à engenharia aquícola;
+- pequenos estudos de caso com dados da planilha;
+- referências bibliográficas adicionais;
+- figuras explicativas e esquemas conceituais;
+- glossário de termos estatísticos aplicados.
+
+# Critério editorial simples
+
+Para evitar complexidade desnecessária, vale manter esta regra:
+
+- primeiro entra a explicação central;
+- depois entra o exemplo aplicado;
+- por último entram aprofundamentos mais técnicos.
+
+Assim, o livro continua útil para alunos iniciantes sem deixar de amadurecer como
+material didático ao longo do tempo.

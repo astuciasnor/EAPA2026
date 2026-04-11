@@ -1,0 +1,9 @@
+Regressão linear
+
+Nível indicado: intermediário.
+Aba recomendada: 6.crabs.
+O que este relatório faz: ajusta uma reta, resume coeficientes e mostra qualidade do ajuste.
+O que editar primeiro: variáveis x e y, aba da planilha e conclusão.
+Saída esperada: gráfico de dispersão, tabela de coeficientes e resumo do ajuste.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.

@@ -1,0 +1,122 @@
+---
+title: "Análise de agrupamento hierárquico (AAH)"
+subtitle: "Explorando semelhanças entre unidades amostrais"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Agrupar unidades com base em várias variáveis medidas simultaneamente.
+
+::: {.callout-note}
+## Nível indicado
+Avançado. Na primeira leitura, não altere o método de distância nem o método de agrupamento.
+Troque apenas a aba, o identificador e o número de grupos, se necessário.
+:::
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **ecomorfologico**.
+A coluna `especie` funciona como identificador, e as demais colunas numéricas
+entram na análise.
+:::
+
+::: {.callout-tip}
+## Roteiro mínimo para a primeira leitura
+1. Confira qual coluna identifica as unidades.
+2. Observe o dendrograma.
+3. Veja a tabela final dos grupos.
+4. Descreva o que os agrupamentos sugerem.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(factoextra)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "ecomorfologico"
+# ===== FIM DA EDIÇÃO ==================================================
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names()
+
+dados
+```
+
+# Preparação da matriz
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+variavel_id <- "especie"
+k_grupos <- 3
+# ===== FIM DA EDIÇÃO ==================================================
+
+matriz <- dados |>
+  select(-all_of(variavel_id)) |>
+  as.data.frame()
+
+rownames(matriz) <- dados[[variavel_id]]
+
+matriz_padronizada <- scale(matriz)
+
+as.data.frame(matriz_padronizada) |>
+  tibble::rownames_to_column(var = variavel_id) |>
+  slice_head(n = 6) |>
+  tabela_relatorio(titulo = "Primeiras linhas da matriz padronizada.", digits = 2)
+```
+
+# Distância e agrupamento
+
+```{r}
+distancias <- dist(matriz_padronizada, method = "euclidean")
+agrupamento <- hclust(distancias, method = "ward.D2")
+```
+
+# Dendrograma
+
+```{r}
+factoextra::fviz_dend(
+  agrupamento,
+  k = k_grupos,
+  rect = TRUE,
+  horiz = TRUE,
+  cex = 0.8
+)
+```
+
+# Grupos formados
+
+```{r}
+grupos <- tibble(
+  especie = rownames(matriz),
+  grupo = cutree(agrupamento, k = k_grupos)
+)
+
+grupos |>
+  arrange(grupo, especie) |>
+  tabela_relatorio(titulo = "Agrupamento das espécies.")
+```
+
+# Interpretação guiada
+
+> A AAH permite identificar quais unidades se parecem mais considerando o
+> conjunto das variáveis. Unidades próximas no dendrograma tendem a ter perfil
+> mais semelhante; unidades distantes tendem a ser mais diferentes.
+
+# Conclusão
+
+Escreva o que os grupos sugerem do ponto de vista biológico ou morfológico.

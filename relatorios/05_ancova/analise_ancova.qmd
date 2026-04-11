@@ -1,0 +1,158 @@
+---
+title: "ANCOVA"
+subtitle: "Comparação de grupos com ajuste por covariável"
+author: "Nome da estudante ou do estudante"
+date: today
+---
+
+# Objetivo
+
+Comparar grupos levando em conta o efeito de uma covariável quantitativa.
+
+::: {.callout-note}
+## Nível indicado
+Intermediário. Na primeira leitura, mantenha as variáveis do exemplo e observe
+primeiro a lógica do ajuste antes de alterar a estrutura do modelo.
+:::
+
+::: {.callout-note}
+## Base usada neste modelo
+Este exemplo usa a aba **28.ancova_demo**, com:
+- `tratamento`
+- `comprimento_inicial_cm`
+- `peso_final_g`
+:::
+
+::: {.callout-tip}
+## Roteiro mínimo para a primeira leitura
+1. Observe o gráfico inicial por tratamento.
+2. Confira se a interação parece importante.
+3. Veja a tabela do modelo sem interação.
+4. Leia as médias ajustadas e escreva a interpretação.
+:::
+
+# Pacotes usados
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(here)
+library(gt)
+library(broom)
+library(emmeans)
+
+source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+```
+
+# Importação dos dados
+
+```{r}
+# ===== EDITE DAQUI ====================================================
+arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+aba_escolhida <- "28.ancova_demo"
+# ===== FIM DA EDIÇÃO ==================================================
+
+dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
+  janitor::clean_names() |>
+  mutate(tratamento = as.factor(tratamento))
+
+dados
+```
+
+# Visualização inicial
+
+```{r}
+ggplot(dados, aes(x = comprimento_inicial_cm, y = peso_final_g, color = tratamento)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Relação entre covariável e resposta por tratamento",
+    x = "Comprimento inicial (cm)",
+    y = "Peso final (g)"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Passo 1: verificar interação
+
+Antes de usar ANCOVA clássica, convém verificar se as inclinações são
+aproximadamente paralelas.
+
+```{r}
+modelo_interacao <- lm(peso_final_g ~ tratamento * comprimento_inicial_cm, data = dados)
+
+as.data.frame(anova(modelo_interacao)) |>
+  tibble::rownames_to_column(var = "termo") |>
+  tabela_relatorio(titulo = "Teste da interação entre tratamento e covariável.", digits = 4)
+```
+
+# Passo 2: ajustar o modelo sem interação
+
+Se a interação não for importante, ajustamos:
+
+$$
+Y_{ij} = \mu + \tau_i + \beta X_{ij} + \varepsilon_{ij}
+$$
+
+```{r}
+modelo_ancova <- lm(peso_final_g ~ tratamento + comprimento_inicial_cm, data = dados)
+
+as.data.frame(anova(modelo_ancova)) |>
+  tibble::rownames_to_column(var = "termo") |>
+  tabela_relatorio(titulo = "Tabela da ANCOVA sem interação.", digits = 4)
+```
+
+# Tabela do modelo
+
+```{r}
+broom::tidy(modelo_ancova) |>
+  tabela_relatorio(titulo = "Coeficientes do modelo ANCOVA.", digits = 4)
+```
+
+# Médias ajustadas
+
+```{r}
+medias_ajustadas <- emmeans::emmeans(modelo_ancova, ~ tratamento)
+medias_ajustadas
+```
+
+```{r}
+as.data.frame(medias_ajustadas) |>
+  tabela_relatorio(titulo = "Médias ajustadas por tratamento.", digits = 3)
+```
+
+# Gráfico com linhas ajustadas
+
+```{r}
+novos <- expand_grid(
+  comprimento_inicial_cm = seq(min(dados$comprimento_inicial_cm),
+                               max(dados$comprimento_inicial_cm),
+                               length.out = 100),
+  tratamento = levels(dados$tratamento)
+)
+
+novos$pred <- predict(modelo_ancova, newdata = novos)
+
+ggplot(dados, aes(x = comprimento_inicial_cm, y = peso_final_g, color = tratamento)) +
+  geom_point(alpha = 0.7) +
+  geom_line(data = novos, aes(y = pred), linewidth = 1) +
+  labs(
+    title = "Retas ajustadas pela ANCOVA",
+    x = "Comprimento inicial (cm)",
+    y = "Peso final (g)"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Interpretação guiada
+
+> A ANCOVA foi usada para comparar os grupos após considerar a influência da covariável.
+> Primeiro, descreva se a interação foi relevante ou não.
+> Depois, diga se os tratamentos permaneceram diferentes após o ajuste.
+> Por fim, explique o que isso significa no contexto biológico ou experimental.
+
+# Conclusão
+
+Finalize em três pontos: o papel da covariável, o efeito dos tratamentos e a
+interpretação prática do ajuste.

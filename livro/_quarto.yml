@@ -1,0 +1,42 @@
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "Estatística Aplicada à Engenharia Aquícola"
+  subtitle: "Apoio teórico para pesca e aquicultura"
+  author: "EAPA2026"
+  search: true
+  page-navigation: true
+  chapters:
+    - index.qmd
+    - capitulos/01_como_estudar_este_material.qmd
+    - capitulos/02_estatistica_aplicada_a_pesca_e_a_aquicultura.qmd
+    - capitulos/03_leitura_de_dados_e_graficos.qmd
+    - capitulos/04_amostragem_e_delineamento.qmd
+    - capitulos/05_testes_de_hipoteses_e_teste_t.qmd
+    - capitulos/06_anova_e_comparacao_de_medias.qmd
+    - capitulos/07_regressao_linear_e_interpretacao.qmd
+    - capitulos/08_trilha_do_semestre.qmd
+
+bibliography: referencias/references.bib
+csl: referencias/food-chemistry.csl
+
+format:
+  html:
+    theme: cosmo
+    css: assets/livro.css
+    embed-resources: true
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    smooth-scroll: true
+    anchor-sections: true
+    link-external-newwindow: true
+
+execute:
+  freeze: false
+
+lang: pt-BR
+editor: visual

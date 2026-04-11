@@ -1,0 +1,9 @@
+Regressão não linear
+
+Nível indicado: avançado.
+Aba recomendada: 29.reg_nlinear_demo.
+O que este relatório faz: ajusta uma curva logística simples e resume seus parâmetros.
+O que editar primeiro: aba da planilha e interpretação final. Na primeira leitura, não altere a fórmula do modelo.
+Saída esperada: gráfico inicial, curva ajustada e tabela de parâmetros.
+Se quiser PDF: imprima o HTML pelo navegador.
+Se quiser DOCX: rode scripts/05_renderizar_docx.R.
