@@ -5,7 +5,7 @@
 library(here)
 library(readxl)
 
-arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+arquivo_excel <- here::here("dados", "aulas_eapa_organizada.xlsx")
 
 cat("Raiz do projeto:\n")
 print(here::here())

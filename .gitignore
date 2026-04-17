@@ -12,13 +12,10 @@ livro/_site/
 
 # Artefatos gerados fora da pasta principal de saida
 relatorios/**/*.html
-!relatorios/_common/modelo_relatorio_aula.html
 relatorios/**/_files/
-!relatorios/_common/modelo_relatorio_aula_files/
-!relatorios/_common/modelo_relatorio_aula_files/**
 
-# Dados locais e confidenciais
-dados/
+# Temporarios de planilhas
+dados/~$*.xlsx
 
 # Arquivos de ambiente local
 .Renviron
@@ -34,3 +31,5 @@ Desktop.ini
 *.tmp
 *.bak
 *~
+/.quarto/
+**/*.quarto_ipynb

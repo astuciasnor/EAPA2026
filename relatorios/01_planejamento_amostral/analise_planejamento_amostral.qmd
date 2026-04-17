@@ -7,16 +7,12 @@ date: today
 
 # Objetivo
 
-Planejar o tamanho amostral e organizar a coleta de campo com base em uma base
-piloto importada de uma planilha Excel.
+Planejar o tamanho amostral e organizar a coleta de campo com base em uma base piloto importada de uma planilha Excel.
 
-::: {.callout-note}
+::: callout-note
 ## O que editar neste arquivo
-Troque principalmente:
-- a **aba da planilha**;
-- a **variável de interesse**;
-- os **parâmetros do erro amostral**;
-- a **descrição do cenário de coleta**.
+
+Troque principalmente: - a **aba da planilha**; - a **variável de interesse**; - os **parâmetros do erro amostral**; - a **descrição do cenário de coleta**.
 :::
 
 # Pacotes usados
@@ -29,13 +25,64 @@ library(here)
 library(gt)
 library(psych)
 
-source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+encontrar_planilha <- function(nome_arquivo) {
+  candidatos <- c(
+    here::here("dados", nome_arquivo),
+    file.path(getwd(), "dados", nome_arquivo),
+    file.path(getwd(), "..", "dados", nome_arquivo),
+    file.path(getwd(), "..", "..", "dados", nome_arquivo)
+  )
+
+  caminho <- candidatos[file.exists(candidatos)][1]
+
+  if (is.na(caminho)) {
+    stop(
+      "Planilha nao encontrada: ", nome_arquivo,
+      ". Confirme se a pasta dados/ esta na raiz do projeto."
+    )
+  }
+
+  caminho
+}
+
+tabela_relatorio <- function(dados, titulo = NULL, digits = NULL) {
+  tabela <- tibble::as_tibble(dados)
+
+  if (requireNamespace("stringr", quietly = TRUE)) {
+    nomes_colunas <- names(tabela) |>
+      gsub("_", " ", x = _) |>
+      stringr::str_squish() |>
+      stringr::str_to_sentence(locale = "pt")
+
+    names(tabela) <- nomes_colunas
+  }
+
+  colunas_numericas <- names(tabela)[vapply(tabela, is.numeric, logical(1))]
+
+  if (length(colunas_numericas) > 0 && !is.null(digits)) {
+    tabela <- tabela |>
+      dplyr::mutate(dplyr::across(dplyr::all_of(colunas_numericas), ~ round(.x, digits)))
+  }
+
+  if (knitr::is_html_output() && requireNamespace("gt", quietly = TRUE)) {
+    tabela_gt <- gt::gt(tabela)
+
+    if (!is.null(titulo) && nzchar(titulo)) {
+      tabela_gt <- tabela_gt |>
+        gt::tab_header(title = gt::md(paste0("**", titulo, "**")))
+    }
+
+    return(tabela_gt |> gt::opt_row_striping())
+  }
+
+  knitr::kable(tabela, caption = titulo)
+}
 ```
 
 # Importação da base piloto
 
 ```{r}
-arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+arquivo_excel <- encontrar_planilha("aulas_eapa_organizada.xlsx")
 aba_escolhida <- "26.planej_amostral_demo"
 
 dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
@@ -46,8 +93,7 @@ dados
 
 # Contexto do problema
 
-Descreva aqui o cenário. Exemplo: estimar o comprimento médio de peixes
-desembarcados em diferentes setores do estuário, com coleta em embarcações.
+Descreva aqui o cenário. Exemplo: estimar o comprimento médio de peixes desembarcados em diferentes setores do estuário, com coleta em embarcações.
 
 # Variável usada no planejamento
 
@@ -79,10 +125,7 @@ $$
 n_0 = \left(\frac{t \cdot s}{E}\right)^2
 $$
 
-em que:
-- $t$ é o valor crítico;
-- $s$ é o desvio-padrão piloto;
-- $E$ é o erro admissível.
+em que: - $t$ é o valor crítico; - $s$ é o desvio-padrão piloto; - $E$ é o erro admissível.
 
 Se a população for finita, podemos ajustar:
 
@@ -149,12 +192,8 @@ plano_coleta |>
 
 ## Modelo de escrita
 
-> Considerando a variabilidade observada na amostra piloto e o erro admissível
-> definido para a aula, o tamanho amostral calculado foi de **`r ceiling(n_planejado)`**
-> unidades amostrais. Esse valor pode orientar a coleta de campo, a distribuição
-> entre setores e o esforço de amostragem por embarcação.
+> Considerando a variabilidade observada na amostra piloto e o erro admissível definido para a aula, o tamanho amostral calculado foi de **`r ceiling(n_planejado)`** unidades amostrais. Esse valor pode orientar a coleta de campo, a distribuição entre setores e o esforço de amostragem por embarcação.
 
 # Conclusão
 
-Finalize dizendo se o tamanho amostral obtido é viável e como a coleta poderá
-ser organizada no campo.
+Finalize dizendo se o tamanho amostral obtido é viável e como a coleta poderá ser organizada no campo.

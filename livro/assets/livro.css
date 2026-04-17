@@ -1,15 +1,15 @@
 :root {
-  --livro-fundo: #eef5f7;
+  --livro-fundo: #eef7f1;
   --livro-painel: #ffffff;
-  --livro-tinta: #163247;
-  --livro-azul: #1f5d7a;
-  --livro-agua: #dff1f4;
+  --livro-tinta: #17362b;
+  --livro-verde: #2f6f4e;
+  --livro-agua: #e3f4e8;
   --livro-areia: #f6efe3;
-  --livro-borda: #d6e2e8;
+  --livro-borda: #d8e6dc;
 }
 
 body {
-  background: linear-gradient(180deg, #edf5f7 0%, #faf7f0 100%);
+  background: linear-gradient(180deg, #eff8f2 0%, #faf7f0 100%);
   color: var(--livro-tinta);
   font-family: Georgia, "Palatino Linotype", serif;
 }
@@ -20,20 +20,20 @@ h1,
 h2,
 h3,
 h4 {
-  color: var(--livro-azul);
+  color: var(--livro-verde);
 }
 
 #title-block-header {
   padding: 1.6rem 1.8rem;
   border-radius: 20px;
-  background: linear-gradient(135deg, #163247 0%, #2d6d88 100%);
+  background: linear-gradient(135deg, #17362b 0%, #3f8f62 100%);
   color: #f8fbfc;
-  box-shadow: 0 16px 34px rgba(22, 50, 71, 0.16);
+  box-shadow: 0 16px 34px rgba(23, 54, 43, 0.16);
 }
 
 #title-block-header .subtitle,
 #title-block-header .quarto-title-meta {
-  color: #d8ebf2;
+  color: #dcefe3;
 }
 
 .callout {
@@ -48,7 +48,7 @@ h4 {
 
 .callout.callout-tip {
   background: var(--livro-agua);
-  border-left: 7px solid #2d7a74;
+  border-left: 7px solid #2f7f5a;
 }
 
 .content,
@@ -63,7 +63,7 @@ blockquote {
 }
 
 .sidebar nav[role="doc-toc"] ul > li > a.active {
-  color: var(--livro-azul);
+  color: var(--livro-verde);
   font-weight: 700;
 }
 

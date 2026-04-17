@@ -54,8 +54,8 @@ O relatório foi configurado para priorizar:
 - resultados da análise;
 - discussão e conclusão.
 
-Em alguns casos, o HTML pode vir acompanhado de uma pasta `_files` na pasta de
-saída. Mantenha essa pasta junto do HTML se você for mover o relatório.
+O HTML principal tende a sair como um arquivo único, porque os recursos visuais
+são incorporados ao próprio arquivo.
 
 ## Se quiser PDF ou Word
 

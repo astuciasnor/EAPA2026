@@ -42,14 +42,65 @@ library(gt)
 library(broom)
 library(nlstools)
 
-source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+encontrar_planilha <- function(nome_arquivo) {
+  candidatos <- c(
+    here::here("dados", nome_arquivo),
+    file.path(getwd(), "dados", nome_arquivo),
+    file.path(getwd(), "..", "dados", nome_arquivo),
+    file.path(getwd(), "..", "..", "dados", nome_arquivo)
+  )
+
+  caminho <- candidatos[file.exists(candidatos)][1]
+
+  if (is.na(caminho)) {
+    stop(
+      "Planilha nao encontrada: ", nome_arquivo,
+      ". Confirme se a pasta dados/ esta na raiz do projeto."
+    )
+  }
+
+  caminho
+}
+
+tabela_relatorio <- function(dados, titulo = NULL, digits = NULL) {
+  tabela <- tibble::as_tibble(dados)
+
+  if (requireNamespace("stringr", quietly = TRUE)) {
+    nomes_colunas <- names(tabela) |>
+      gsub("_", " ", x = _) |>
+      stringr::str_squish() |>
+      stringr::str_to_sentence(locale = "pt")
+
+    names(tabela) <- nomes_colunas
+  }
+
+  colunas_numericas <- names(tabela)[vapply(tabela, is.numeric, logical(1))]
+
+  if (length(colunas_numericas) > 0 && !is.null(digits)) {
+    tabela <- tabela |>
+      dplyr::mutate(dplyr::across(dplyr::all_of(colunas_numericas), ~ round(.x, digits)))
+  }
+
+  if (knitr::is_html_output() && requireNamespace("gt", quietly = TRUE)) {
+    tabela_gt <- gt::gt(tabela)
+
+    if (!is.null(titulo) && nzchar(titulo)) {
+      tabela_gt <- tabela_gt |>
+        gt::tab_header(title = gt::md(paste0("**", titulo, "**")))
+    }
+
+    return(tabela_gt |> gt::opt_row_striping())
+  }
+
+  knitr::kable(tabela, caption = titulo)
+}
 ```
 
 # Importação dos dados
 
 ```{r}
 # ===== EDITE DAQUI ====================================================
-arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+arquivo_excel <- encontrar_planilha("aulas_eapa_organizada.xlsx")
 aba_escolhida <- "29.reg_nlinear_demo"
 # ===== FIM DA EDIÇÃO ==================================================
 

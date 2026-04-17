@@ -1,38 +1,93 @@
 # EAPA2026
 
-Projeto didático de Estatística Aplicada com R + Quarto.
+Projeto didatico de Estatistica Aplicada com R + Quarto.
 
-A ideia central é simples: o aluno abre um relatório `.qmd`, troca poucas
-linhas, clica em Render e interpreta o resultado.
+Este repositorio organiza dois materiais complementares:
 
-## Começo rápido
+- relatorios praticos para os alunos trabalharem nas analises;
+- livro/apostila para o professor divulgar e amadurecer a teoria das analises.
 
-1. Abra `EAPA2026.Rproj`.
-2. Rode `scripts/01_instalacoes.R` uma única vez.
-3. Rode `scripts/04_validar_ambiente.R`.
-4. Abra um relatório em `relatorios/`.
-5. Edite só o que estiver marcado.
-6. Clique em Render.
+O objetivo e manter a experiencia dos alunos simples: abrir uma pasta de
+analise, editar poucas linhas do `.qmd`, clicar em Render e interpretar o HTML.
+Ao mesmo tempo, o projeto continua organizado para planejamento, manutencao e
+publicacao do material teorico pelo professor.
 
-## Formato principal
+## Estrutura
 
-O formato principal do projeto é HTML.
+- `dados/` -> planilha unica usada nas aulas.
+- `relatorios/` -> pastas das analises praticas.
+- `imagens/` -> figuras de apoio e prompts para imagens.
+- `scripts/` -> instalacao, checagens e utilitarios.
+- `livro/` -> apostila teorica do professor.
+- `GUIA_ALUNOS.md` -> roteiro curto opcional para orientar a turma.
+
+## Versao Dos Alunos
+
+Para as aulas praticas, os alunos precisam receber:
+
+- `EAPA2026.Rproj`
+- `dados/`
+- `imagens/`
+- `relatorios/`
+- `scripts/`
+- `GUIA_ALUNOS.md`, se voce quiser entregar um roteiro curto
+
+Os alunos nao precisam receber:
+
+- `livro/`
+- `README.md`
+- `.github/`
+- arquivos internos de manutencao do projeto
+
+Assim, a atencao da turma fica concentrada nas pastas de analise dentro de
+`relatorios/`.
+
+## Dados
+
+A pasta `dados/` deve conter uma unica planilha principal:
+
+- `dados/aulas_eapa_organizada.xlsx`
+
+Se a planilha for atualizada, mantenha esse mesmo nome. Assim os relatorios e
+scripts continuam funcionando sem novas edicoes.
+
+## Relatorios
+
+Cada analise tem sua propria pasta. Exemplo:
+
+```text
+relatorios/
+  03_teste_t/
+    _quarto.yml
+    analise_teste_t.qmd
+```
+
+O arquivo `_quarto.yml` fica dentro da pasta da analise para que cada relatorio
+tenha sua propria configuracao de renderizacao. O `.qmd` fica com YAML curto,
+normalmente apenas `title`, `subtitle`, `author` e `date`.
+
+Nao ha `_quarto.yml` na raiz do projeto para os relatorios. Tambem nao ha pasta
+`relatorios/_common/`. A ideia e evitar dependencia invisivel para o aluno.
+
+## Formato Dos Relatorios
+
+O formato principal e HTML.
 
 Motivos:
 
-- renderiza mais rápido;
-- exige menos instalação do que PDF com LaTeX;
-- funciona bem para aula, leitura em tela e impressão posterior.
+- renderiza mais rapido;
+- exige menos instalacao do que PDF com LaTeX;
+- funciona bem para aula, leitura em tela e impressao posterior;
+- com `embed-resources: true`, tende a gerar um HTML principal em arquivo unico.
 
-## Quando usar cada saída
+Quando necessario:
 
-- HTML: formato padrão para aula e estudo.
-- PDF: imprimir o HTML pelo navegador.
+- PDF: imprimir o HTML pelo navegador;
 - DOCX: usar `scripts/05_renderizar_docx.R`.
 
-## Ordem sugerida para a turma
+## Ordem Sugerida Das Analises
 
-### Primeiro contato
+Primeiro contato:
 
 1. `relatorios/00_modelo_base/modelo_base.qmd`
 2. `relatorios/10_graficos_ggplot2/analise_graficos_ggplot2.qmd`
@@ -40,90 +95,83 @@ Motivos:
 4. `relatorios/01_planejamento_amostral/analise_planejamento_amostral.qmd`
 5. `relatorios/04_anova/analise_anova.qmd`
 
-### Depois
+Depois:
 
 1. `relatorios/05_ancova/analise_ancova.qmd`
 2. `relatorios/06_regressao_linear/analise_regressao_linear.qmd`
 3. `relatorios/02_planejamento_experimentos/analise_planejamento_experimentos.qmd`
 
-### Mais adiante
+Mais adiante:
 
 1. `relatorios/07_regressao_nao_linear/analise_regressao_nao_linear.qmd`
 2. `relatorios/08_multivariada_aah/analise_aah.qmd`
 3. `relatorios/09_multivariada_acp/analise_acp.qmd`
 
-## O que o aluno deve editar no início
+## Scripts
 
-Na maior parte das aulas, basta trocar:
+- `scripts/01_instalacoes.R` -> instala os pacotes principais.
+- `scripts/02_listar_abas_excel.R` -> lista as abas da planilha.
+- `scripts/03_testar_caminho_here.R` -> testa caminhos do projeto.
+- `scripts/04_validar_ambiente.R` -> valida pacotes, Quarto e planilha.
+- `scripts/05_renderizar_docx.R` -> gera DOCX de um relatorio.
 
-- o título;
-- a aba da planilha Excel;
-- os nomes das variáveis;
-- a interpretação final.
+## Livro
 
-## Arquivos mais importantes
+A pasta `livro/` e a apostila teorica do professor. Ela nao e necessaria para os
+alunos rodarem os relatorios praticos.
 
-- `GUIA_ALUNOS.md` → roteiro curto para a turma
-- `scripts/01_instalacoes.R` → instalação inicial
-- `scripts/04_validar_ambiente.R` → checagem do ambiente
-- `scripts/05_renderizar_docx.R` → geração de DOCX
-- `livro/` → subprojeto do livro teórico em Quarto Book
-- `README_projeto.md` → documentação complementar
+Para renderizar o livro:
 
-## Livro teórico
+```powershell
+quarto render livro --no-clean
+```
 
-O projeto agora também tem uma subpasta própria para o livro didático:
+A saida fica em:
 
-- `livro/_quarto.yml` → configuração do livro
-- `livro/index.qmd` → página inicial
-- `livro/capitulos/` → capítulos teóricos
-- `livro/referencias/` → local para `references.bib` e `food-chemistry.csl`
+```text
+livro/_site/
+```
 
-Quando quiser renderizar o livro, use o Quarto apontando para a pasta `livro`.
+O livro usa sua propria configuracao em:
 
-Comando recomendado neste ambiente:
+```text
+livro/_quarto.yml
+```
 
-- `quarto render livro --no-clean`
+## Referencias
 
-Saída do livro:
+O livro ja tem uma pasta propria para referencias:
 
-- `livro/_site/`
+```text
+livro/referencias/
+```
 
-## Publicação do livro no GitHub Pages
+Se alguma analise pratica precisar de citacao, prefira colocar os arquivos de
+referencia dentro da propria pasta daquela analise:
 
-O livro pode ser publicado automaticamente neste mesmo repositório.
+```text
+relatorios/03_teste_t/
+  _quarto.yml
+  analise_teste_t.qmd
+  references.bib
+  food-chemistry.csl
+```
 
-Fluxo adotado:
+Nesse caso, acrescente ao `_quarto.yml` da analise:
 
-- o conteúdo-fonte continua em `livro/`
-- o GitHub Actions renderiza o livro com `quarto render livro`
-- a publicação usa `livro/_site/` como artefato do GitHub Pages
-- `livro/_site/` permanece fora do Git, porque é saída gerada
+```yaml
+bibliography: references.bib
+csl: food-chemistry.csl
+```
 
-Primeira ativação no GitHub:
+Assim a analise continua independente, sem depender da pasta `livro/`.
 
-1. Abra o repositório em `Settings > Pages`.
-2. Em `Build and deployment`, escolha `Source: GitHub Actions`.
-3. Faça um push na branch `main` ou rode manualmente o workflow `Publish Book` na aba `Actions`.
+## Manutencao
 
-Endereço esperado da publicação:
+Ao atualizar o projeto:
 
-- `https://astuciasnor.github.io/EAPA2026/`
-
-Arquivos do Zotero:
-
-- os arquivos já devem ficar em `livro/referencias/`
-- o livro já está configurado para usar `references.bib` e `food-chemistry.csl`
-- novas citações podem ser inseridas com a sintaxe normal do Quarto, como `[@björnsson1994]`
-
-## Se algo der errado
-
-1. Confirme que o projeto foi aberto por `EAPA2026.Rproj`.
-2. Rode `scripts/04_validar_ambiente.R`.
-3. Verifique se a planilha está em `dados/`.
-4. Verifique se o Quarto está instalado.
-
-## Observação sobre o HTML
-
-Alguns relatórios podem gerar uma pasta `_files` junto do HTML em `_saida/`.
-Isso é normal. Se você mover o HTML, mantenha essa pasta junto dele.
+1. mantenha a planilha principal como `dados/aulas_eapa_organizada.xlsx`;
+2. mantenha cada analise com seu proprio `_quarto.yml`;
+3. evite recolocar configuracoes globais em `_quarto.yml` na raiz;
+4. mantenha o livro separado do pacote dos alunos;
+5. teste ao menos um relatorio iniciante depois de mudancas estruturais.

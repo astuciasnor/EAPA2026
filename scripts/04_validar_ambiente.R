@@ -7,8 +7,7 @@ pacotes_essenciais <- c(
   "readxl",
   "janitor",
   "here",
-  "gt",
-  "flextable"
+  "gt"
 )
 
 faltando <- pacotes_essenciais[
@@ -34,7 +33,7 @@ if (nzchar(caminho_quarto)) {
   warning("Quarto nao encontrado no PATH. Instale o aplicativo Quarto para gerar os relatorios em HTML.")
 }
 
-arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+arquivo_excel <- here::here("dados", "aulas_eapa_organizada.xlsx")
 
 if (!file.exists(arquivo_excel)) {
   stop("Planilha principal nao encontrada em: ", arquivo_excel)

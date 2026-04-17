@@ -7,30 +7,27 @@ date: today
 
 # Objetivo
 
-Montar um delineamento experimental de forma guiada, com sorteio das parcelas,
-usando Quarto e uma planilha Excel de apoio.
+Montar um delineamento experimental de forma guiada, com sorteio das parcelas, usando Quarto e uma planilha Excel de apoio.
 
-::: {.callout-note}
+::: callout-note
 ## Nível indicado
-Intermediário. Na primeira leitura, mantenha o delineamento do exemplo e observe
-como o plano experimental é montado antes de trocar a estrutura do desenho.
+
+Intermediário. Na primeira leitura, mantenha o delineamento do exemplo e observe como o plano experimental é montado antes de trocar a estrutura do desenho.
 :::
 
-::: {.callout-note}
+::: callout-note
 ## O que editar neste arquivo
-Edite principalmente:
-- o tipo de delineamento;
-- os nomes dos tratamentos;
-- o número de repetições ou blocos;
-- o texto de justificativa.
+
+Edite principalmente: - o tipo de delineamento; - os nomes dos tratamentos; - o número de repetições ou blocos; - o texto de justificativa.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Roteiro mínimo para a primeira leitura
-1. Veja qual delineamento foi escolhido.
-2. Observe a tabela de tratamentos.
-3. Confira o plano sorteado.
-4. Explique por que esse delineamento faz sentido para a aula.
+
+1.  Veja qual delineamento foi escolhido.
+2.  Observe a tabela de tratamentos.
+3.  Confira o plano sorteado.
+4.  Explique por que esse delineamento faz sentido para a aula.
 :::
 
 # Pacotes usados
@@ -43,14 +40,65 @@ library(here)
 library(gt)
 library(agricolae)
 
-source(here::here("relatorios", "_common", "funcoes_relatorio.R"))
+encontrar_planilha <- function(nome_arquivo) {
+  candidatos <- c(
+    here::here("dados", nome_arquivo),
+    file.path(getwd(), "dados", nome_arquivo),
+    file.path(getwd(), "..", "dados", nome_arquivo),
+    file.path(getwd(), "..", "..", "dados", nome_arquivo)
+  )
+
+  caminho <- candidatos[file.exists(candidatos)][1]
+
+  if (is.na(caminho)) {
+    stop(
+      "Planilha nao encontrada: ", nome_arquivo,
+      ". Confirme se a pasta dados/ esta na raiz do projeto."
+    )
+  }
+
+  caminho
+}
+
+tabela_relatorio <- function(dados, titulo = NULL, digits = NULL) {
+  tabela <- tibble::as_tibble(dados)
+
+  if (requireNamespace("stringr", quietly = TRUE)) {
+    nomes_colunas <- names(tabela) |>
+      gsub("_", " ", x = _) |>
+      stringr::str_squish() |>
+      stringr::str_to_sentence(locale = "pt")
+
+    names(tabela) <- nomes_colunas
+  }
+
+  colunas_numericas <- names(tabela)[vapply(tabela, is.numeric, logical(1))]
+
+  if (length(colunas_numericas) > 0 && !is.null(digits)) {
+    tabela <- tabela |>
+      dplyr::mutate(dplyr::across(dplyr::all_of(colunas_numericas), ~ round(.x, digits)))
+  }
+
+  if (knitr::is_html_output() && requireNamespace("gt", quietly = TRUE)) {
+    tabela_gt <- gt::gt(tabela)
+
+    if (!is.null(titulo) && nzchar(titulo)) {
+      tabela_gt <- tabela_gt |>
+        gt::tab_header(title = gt::md(paste0("**", titulo, "**")))
+    }
+
+    return(tabela_gt |> gt::opt_row_striping())
+  }
+
+  knitr::kable(tabela, caption = titulo)
+}
 ```
 
 # Leitura da planilha de apoio
 
 ```{r}
 # ===== EDITE DAQUI ====================================================
-arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+arquivo_excel <- encontrar_planilha("aulas_eapa_organizada.xlsx")
 aba_escolhida <- "27.plan_exp_demo"
 # ===== FIM DA EDIÇÃO ==================================================
 
@@ -173,21 +221,16 @@ if (delineamento %in% c("DIC", "DBC", "DF") && is.data.frame(sorteio)) {
 
 ## Modelo de texto
 
-> O delineamento escolhido foi **`r delineamento`**.
-> Esse desenho é adequado para a estrutura experimental da aula porque organiza
-> as unidades experimentais de forma coerente com as fontes de variação do problema.
-> O plano sorteado facilita a execução prática e prepara a análise estatística posterior.
+> O delineamento escolhido foi **`r delineamento`**. Esse desenho é adequado para a estrutura experimental da aula porque organiza as unidades experimentais de forma coerente com as fontes de variação do problema. O plano sorteado facilita a execução prática e prepara a análise estatística posterior.
 
 # Dica didática
 
-::: {.callout-tip}
+::: callout-tip
 ## Como aproveitar em aula
-O aluno não precisa aprender toda a sintaxe de uma vez.
-Basta trocar o tipo de delineamento, revisar os tratamentos e observar a tabela
-de sorteio sendo gerada no relatório.
+
+O aluno não precisa aprender toda a sintaxe de uma vez. Basta trocar o tipo de delineamento, revisar os tratamentos e observar a tabela de sorteio sendo gerada no relatório.
 :::
 
 # Conclusão
 
-Finalize em três pontos: qual delineamento foi usado, por que ele faz sentido
-e qual cuidado experimental ele ajuda a controlar.
+Finalize em três pontos: qual delineamento foi usado, por que ele faz sentido e qual cuidado experimental ele ajuda a controlar.

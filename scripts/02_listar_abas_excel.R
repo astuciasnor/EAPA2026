@@ -5,6 +5,6 @@
 library(readxl)
 library(here)
 
-arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+arquivo_excel <- here::here("dados", "aulas_eapa_organizada.xlsx")
 
 readxl::excel_sheets(arquivo_excel)

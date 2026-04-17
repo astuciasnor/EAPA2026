@@ -20,7 +20,6 @@ pacotes_iniciais <- c(
   "janitor",
   "here",
   "gt",
-  "flextable",
   "rstatix",
   "psych",
   "agricolae",
@@ -39,7 +38,7 @@ pacotes_do_projeto <- unique(c(pacotes_iniciais, pacotes_avancados))
 
 instalar_se_faltar(pacotes_do_projeto)
 
-arquivo_excel <- here::here("dados", "aulas_bioestatistica_organizada.xlsx")
+arquivo_excel <- here::here("dados", "aulas_eapa_organizada.xlsx")
 
 if (!file.exists(arquivo_excel)) {
   stop("A planilha principal nao foi encontrada em: ", arquivo_excel)

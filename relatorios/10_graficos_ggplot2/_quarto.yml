@@ -1,0 +1,19 @@
+format:
+  html:
+    theme: litera
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    embed-resources: true
+    smooth-scroll: true
+    anchor-sections: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+editor: visual
+editor_options:
+  chunk_output_type: console
+lang: pt-BR
