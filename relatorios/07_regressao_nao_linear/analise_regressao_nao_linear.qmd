@@ -11,6 +11,12 @@ Ajustar um modelo não linear quando a relação entre as variáveis não é bem
 representada por uma reta.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Nível indicado
 Avançado. Na primeira aula com este modelo, não altere a fórmula do ajuste.
 Troque primeiro a aba da planilha e o texto de interpretação.

@@ -15,7 +15,8 @@ Neste momento, o livro já tem uma base para apoiar:
 - como estudar o material;
 - a lógica da estatística aplicada à pesca e à aquicultura;
 - leitura de dados e gráficos;
-- amostragem e delineamento;
+- planejamento amostral;
+- planejamento de experimentos;
 - testes de hipóteses e teste t;
 - ANOVA e regressão linear.
 
@@ -26,12 +27,13 @@ Uma sequência pedagógica enxuta para o restante do semestre pode seguir esta o
 | Bloco | Tema do livro | Relatório prático associado |
 |---|---|---|
 | 1 | leitura de dados e gráficos | 00 modelo base, 10 gráficos |
-| 2 | amostragem e delineamento | 01 planejamento amostral, 02 planejamento de experimentos |
-| 3 | comparação de médias | 03 teste t, 04 ANOVA |
-| 4 | ajuste por covariável | 05 ANCOVA |
-| 5 | modelagem linear | 06 regressão linear |
-| 6 | modelagem não linear | 07 regressão não linear |
-| 7 | leitura multivariada | 08 AAH, 09 ACP |
+| 2 | planejamento amostral | 01 planejamento amostral |
+| 3 | planejamento de experimentos | 02 planejamento de experimentos |
+| 4 | comparação de médias | 03 teste t, 04 ANOVA |
+| 5 | ajuste por covariável | 05 ANCOVA |
+| 6 | modelagem linear | 06 regressão linear |
+| 7 | modelagem não linear | 07 regressão não linear |
+| 8 | leitura multivariada | 08 AAH, 09 ACP |
 
 # Estrutura sugerida para cada novo capítulo
 

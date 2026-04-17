@@ -10,6 +10,12 @@ date: today
 Comparar grupos levando em conta o efeito de uma covariável quantitativa.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Nível indicado
 Intermediário. Na primeira leitura, mantenha as variáveis do exemplo e observe
 primeiro a lógica do ajuste antes de alterar a estrutura do modelo.

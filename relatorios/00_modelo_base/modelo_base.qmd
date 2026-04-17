@@ -5,9 +5,11 @@ author: "Nome da estudante ou do estudante"
 date: today
 ---
 
+# Objetivo
 
+Servir como ponto de partida para conhecer a estrutura de um relatório em Quarto e praticar o fluxo de edição, renderização e interpretação.
 
-::: callout-note
+::: {.callout-note}
 ## Nível indicado
 
 Use este arquivo na primeira aula prática ou como modelo para copiar.
@@ -15,7 +17,7 @@ Use este arquivo na primeira aula prática ou como modelo para copiar.
 
 # Como usar este modelo
 
-::: callout-note
+::: {.callout-note}
 ## Ideia central
 
 Este arquivo foi pensado para que a aula seja **mais prática do que técnica**. A pessoa abre o `.qmd`, troca poucas linhas, renderiza e já começa a enxergar os resultados no HTML.
@@ -123,7 +125,7 @@ dados <- readxl::read_excel(arquivo_excel, sheet = aba_escolhida) |>
 dados
 ```
 
-::: callout-tip
+::: {.callout-tip}
 ## Dica sobre `here()`
 
 Mesmo que o `.qmd` esteja em uma subpasta de `relatorios/`, o `here()` procura o arquivo a partir da raiz do projeto.
@@ -175,7 +177,7 @@ $$
 \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
 $$
 
-# Resultado e interpretação
+# Interpretação guiada
 
 ## Resultado
 

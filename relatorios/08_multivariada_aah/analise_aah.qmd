@@ -10,6 +10,12 @@ date: today
 Agrupar unidades com base em várias variáveis medidas simultaneamente.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Nível indicado
 Avançado. Na primeira leitura, não altere o método de distância nem o método de agrupamento.
 Troque apenas a aba, o identificador e o número de grupos, se necessário.

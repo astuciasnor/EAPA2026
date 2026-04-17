@@ -10,9 +10,12 @@ date: today
 Planejar o tamanho amostral e organizar a coleta de campo com base em uma base piloto importada de uma planilha Excel.
 
 ::: callout-note
-## O que editar neste arquivo
+## O que editar primeiro
 
-Troque principalmente: - a **aba da planilha**; - a **variável de interesse**; - os **parâmetros do erro amostral**; - a **descrição do cenário de coleta**.
+-   a aba da planilha;
+-   a variável de interesse;
+-   os parâmetros do erro amostral;
+-   a descrição do cenário de coleta.
 :::
 
 # Pacotes usados
@@ -190,7 +193,9 @@ plano_coleta |>
   tabela_relatorio(titulo = "Resumo inicial por setor e embarcação.")
 ```
 
-## Modelo de escrita
+# Interpretação guiada
+
+## Modelo de texto
 
 > Considerando a variabilidade observada na amostra piloto e o erro admissível definido para a aula, o tamanho amostral calculado foi de **`r ceiling(n_planejado)`** unidades amostrais. Esse valor pode orientar a coleta de campo, a distribuição entre setores e o esforço de amostragem por embarcação.
 

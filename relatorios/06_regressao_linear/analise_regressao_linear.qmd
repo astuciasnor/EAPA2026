@@ -10,6 +10,12 @@ date: today
 Modelar a relação entre duas variáveis quantitativas por meio de regressão linear.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Nível indicado
 Intermediário. Na primeira leitura, mantenha as variáveis do exemplo e observe
 primeiro como a reta resume a tendência dos dados.

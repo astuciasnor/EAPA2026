@@ -10,6 +10,12 @@ date: today
 Comparar médias de vários tratamentos usando análise de variância.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Base usada neste modelo
 Este exemplo usa a aba **11.leite_tuber**, com as colunas `trat` e `resp`.
 :::

@@ -10,6 +10,12 @@ date: today
 Comparar duas médias usando dados importados do Excel.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Base usada neste modelo
 Este exemplo usa a aba **2.bezero_2am**, com as colunas `breed` e `peso`.
 Você pode trocar a aba e os nomes das variáveis.

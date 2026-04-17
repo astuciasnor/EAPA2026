@@ -10,6 +10,12 @@ date: today
 Resumir várias variáveis em poucos componentes e visualizar padrões gerais.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Nível indicado
 Avançado. Na primeira leitura, não altere o algoritmo da ACP.
 Troque apenas a aba, a coluna identificadora e a interpretação final.

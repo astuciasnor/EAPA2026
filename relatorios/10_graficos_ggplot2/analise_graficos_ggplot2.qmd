@@ -10,6 +10,12 @@ date: today
 Gerar gráficos rapidamente a partir de uma planilha Excel, trocando poucas linhas.
 
 ::: {.callout-note}
+## O que editar primeiro
+
+Na primeira leitura, altere apenas o título/autoria, a aba da planilha, as variáveis indicadas nos blocos de edição e os textos de interpretação e conclusão.
+:::
+
+::: {.callout-note}
 ## Base usada neste modelo
 Este exemplo usa a aba **10.caranguejos**.
 Você pode adaptar para outras bases trocando os nomes das variáveis.

@@ -13,11 +13,12 @@ book:
     - capitulos/01_como_estudar_este_material.qmd
     - capitulos/02_estatistica_aplicada_a_pesca_e_a_aquicultura.qmd
     - capitulos/03_leitura_de_dados_e_graficos.qmd
-    - capitulos/04_amostragem_e_delineamento.qmd
-    - capitulos/05_testes_de_hipoteses_e_teste_t.qmd
-    - capitulos/06_anova_e_comparacao_de_medias.qmd
-    - capitulos/07_regressao_linear_e_interpretacao.qmd
-    - capitulos/08_trilha_do_semestre.qmd
+    - capitulos/04_planejamento_amostral.qmd
+    - capitulos/05_planejamento_de_experimentos.qmd
+    - capitulos/06_testes_de_hipoteses_e_teste_t.qmd
+    - capitulos/07_anova_e_comparacao_de_medias.qmd
+    - capitulos/08_regressao_linear_e_interpretacao.qmd
+    - capitulos/09_trilha_do_semestre.qmd
 
 bibliography: referencias/references.bib
 csl: referencias/food-chemistry.csl

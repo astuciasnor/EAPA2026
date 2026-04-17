@@ -1,0 +1,78 @@
+---
+title: "Planejamento Amostral"
+---
+
+# Por que planejar a amostra?
+
+Uma analise estatistica depende da qualidade dos dados que chegam ate ela. No
+planejamento amostral, a pergunta central e simples: quantas unidades precisam
+ser observadas para estimar uma caracteristica com precisao aceitavel?
+
+Essa decisao importa porque uma amostra pequena demais pode produzir estimativas
+muito instaveis, enquanto uma amostra maior do que o necessario pode gastar
+tempo, equipe e recursos sem ganho proporcional de informacao.
+
+# O que define o tamanho da amostra?
+
+O tamanho amostral depende principalmente de quatro elementos:
+
+- variabilidade esperada da variavel de interesse;
+- erro maximo admissivel;
+- nivel de confianca desejado;
+- tamanho da populacao, quando ela e finita.
+
+Quanto maior a variabilidade dos dados e menor o erro tolerado, maior tende a
+ser a amostra necessaria.
+
+# O papel da amostra piloto
+
+Em muitas situacoes de campo, a variabilidade real da populacao nao e conhecida
+antes da coleta. Uma amostra piloto ajuda a estimar essa variabilidade inicial e
+torna o planejamento mais realista.
+
+No relatorio pratico, a amostra piloto serve para calcular estatisticas como
+media, desvio-padrao e tamanho amostral recomendado. O objetivo nao e apenas
+obter um numero, mas discutir se esse numero e viavel no campo.
+
+# Erro admissivel e viabilidade
+
+O erro admissivel representa o quanto se aceita errar na estimativa. Um erro
+muito pequeno exige maior esforco amostral. Um erro muito grande pode tornar a
+estimativa pouco util para a decisao tecnica.
+
+Por isso, o planejamento amostral sempre envolve equilibrio entre precisao e
+viabilidade. A estatistica ajuda a organizar essa decisao, mas o contexto de
+campo tambem precisa entrar na interpretacao.
+
+# Ligacao com o relatorio pratico
+
+::: {.callout-note}
+## Relatorio associado
+
+Este capitulo conversa diretamente com:
+
+`relatorios/01_planejamento_amostral/analise_planejamento_amostral.qmd`
+:::
+
+No relatorio, o estudante deve observar:
+
+- qual variavel sera usada no planejamento;
+- qual foi a variabilidade observada na amostra piloto;
+- qual erro admissivel foi escolhido;
+- qual tamanho amostral foi recomendado;
+- se esse tamanho e praticavel no contexto da aula.
+
+# Erros frequentes
+
+Alguns erros comuns no inicio sao:
+
+- escolher o tamanho da amostra sem olhar a variabilidade dos dados;
+- tratar o numero calculado como regra absoluta;
+- ignorar perdas, falhas de coleta ou limitacoes logisticas;
+- esquecer de explicar se o plano e viavel.
+
+# Fechamento
+
+Planejar a amostra nao e uma etapa burocratica. E o momento em que a pergunta de
+campo, a precisao desejada e a viabilidade da coleta sao colocadas na mesma
+mesa.

@@ -43,7 +43,8 @@ Neste material, a estatística aparece como ferramenta para responder perguntas 
 Os primeiros capítulos foram organizados para apoiar o começo do trabalho com:
 
 -   leitura de dados e gráficos;
--   amostragem e delineamento;
+-   planejamento amostral;
+-   planejamento de experimentos;
 -   testes de hipóteses;
 -   interpretação aplicada.
 

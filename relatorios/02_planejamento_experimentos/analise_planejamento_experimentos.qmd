@@ -16,9 +16,12 @@ Intermediário. Na primeira leitura, mantenha o delineamento do exemplo e observ
 :::
 
 ::: callout-note
-## O que editar neste arquivo
+## O que editar primeiro
 
-Edite principalmente: - o tipo de delineamento; - os nomes dos tratamentos; - o número de repetições ou blocos; - o texto de justificativa.
+-   o tipo de delineamento;
+-   os nomes dos tratamentos;
+-   o número de repetições ou blocos;
+-   o texto de justificativa.
 :::
 
 ::: callout-tip
@@ -217,7 +220,7 @@ if (delineamento %in% c("DIC", "DBC", "DF") && is.data.frame(sorteio)) {
 }
 ```
 
-# Justificativa do delineamento
+# Interpretação guiada
 
 ## Modelo de texto
 

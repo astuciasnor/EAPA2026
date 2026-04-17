@@ -1,0 +1,91 @@
+---
+title: "Planejamento de Experimentos"
+---
+
+# Por que planejar o experimento?
+
+Quando ha tratamentos a comparar, nao basta coletar dados. E preciso decidir
+como os tratamentos serao distribuidos entre as unidades experimentais. Essa
+organizacao e chamada delineamento experimental.
+
+Um bom delineamento reduz confusoes, melhora a comparacao entre tratamentos e
+ajuda a separar o efeito de interesse de outras fontes de variacao.
+
+# Unidade experimental
+
+A unidade experimental e a menor unidade que recebe um tratamento de forma
+independente. Antes de escolher qualquer sigla de delineamento, o estudante
+precisa reconhecer qual e essa unidade.
+
+Em aquicultura, a unidade experimental pode ser um tanque, viveiro, aquario,
+parcela, lote ou outra estrutura onde o tratamento e aplicado.
+
+# DIC
+
+O delineamento inteiramente casualizado e adequado quando as unidades
+experimentais sao consideradas relativamente homogeneas.
+
+Nesse caso, os tratamentos sao sorteados livremente entre as unidades. A ideia
+principal e evitar que a escolha do pesquisador influencie a distribuicao dos
+tratamentos.
+
+# DBC
+
+O delineamento em blocos casualizados e util quando existe uma fonte conhecida
+de variacao que pode ser organizada em blocos.
+
+Cada bloco deve reunir unidades mais parecidas entre si. Dentro de cada bloco,
+os tratamentos sao sorteados. Isso ajuda a controlar uma parte da variabilidade
+que nao e o foco principal do estudo.
+
+# DQL
+
+O quadrado latino e usado quando se deseja controlar duas fontes de variacao ao
+mesmo tempo. Ele exige uma estrutura mais equilibrada e, por isso, costuma ser
+menos flexivel.
+
+Antes de usar DQL, e importante verificar se a pergunta e a organizacao das
+unidades realmente justificam esse desenho.
+
+# Esquema fatorial
+
+O esquema fatorial permite estudar mais de um fator ao mesmo tempo. Alem dos
+efeitos principais de cada fator, ele permite observar se existe interacao entre
+eles.
+
+Em termos praticos, isso significa perguntar se o efeito de um fator muda
+conforme o nivel de outro fator.
+
+# Ligacao com o relatorio pratico
+
+::: {.callout-note}
+## Relatorio associado
+
+Este capitulo conversa diretamente com:
+
+`relatorios/02_planejamento_experimentos/analise_planejamento_experimentos.qmd`
+:::
+
+No relatorio, o estudante deve observar:
+
+- qual delineamento foi escolhido;
+- quais tratamentos foram definidos;
+- quantas repeticoes ou blocos foram usados;
+- como o sorteio organiza o plano experimental;
+- por que o delineamento faz sentido para a pergunta da aula.
+
+# Erros frequentes
+
+Alguns erros comuns no inicio sao:
+
+- escolher o delineamento apenas pela sigla;
+- confundir unidade amostral com unidade experimental;
+- ignorar fontes obvias de variacao;
+- esquecer que casualizacao e parte do planejamento;
+- interpretar o sorteio como detalhe secundario.
+
+# Fechamento
+
+Planejar um experimento e construir uma comparacao justa. O delineamento deve
+nascer da pergunta, da unidade experimental e das fontes de variacao que podem
+afetar os resultados.
